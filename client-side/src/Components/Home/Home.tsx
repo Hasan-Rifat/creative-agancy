@@ -4,9 +4,7 @@ import Client from "./Client";
 import Services from "./Services";
 import Work from "./Work";
 
-type HomeProps = {};
-
-const Home: React.FC<HomeProps> = () => {
+const Home: React.FC = () => {
   return (
     <>
       <Banner />
