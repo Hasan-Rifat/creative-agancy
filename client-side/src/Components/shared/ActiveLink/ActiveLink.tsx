@@ -20,15 +20,13 @@ const ActiveLink: React.FC<ActiveLinkProps> = ({
   let resolved = useResolvedPath(to);
   let match = useMatch({ path: resolved.pathname, end: true });
   return (
-    <div>
-      <Link
-        className={`${match ? " border-b-[3px] border-[#7ab259]" : ""}`}
-        to={to}
-        {...props}
-      >
-        {children}
-      </Link>
-    </div>
+    <Link
+      className={`${match ? " border-b-[3px] border-[#7ab259]" : ""}`}
+      to={to}
+      {...props}
+    >
+      {children}
+    </Link>
   );
 };
 export default ActiveLink;

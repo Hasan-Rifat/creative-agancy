@@ -13,7 +13,8 @@ module.exports = {
       },
     },
     screens: {
-      // xs: '360px',
+      xss: "200px",
+      xs: "360px",
       sm: "480px",
       md: "768px",
       // ipad: '830px',

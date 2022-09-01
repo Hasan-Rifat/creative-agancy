@@ -31,11 +31,11 @@ const Services: React.FC<ServicesProps> = () => {
   ];
   return (
     <section>
-      <div className="w-[1200px]  mx-auto py-[70px] pb-[114px]">
-        <h2 className="text-[34px] leading-[43px] font-semibold text-center pb-[77px]">
+      <div className="max-w-[1200px]  mx-auto py-[70px] pb-[114px]">
+        <h2 className=" xss:text-[24px] xss:leading-[28px] md:text-[34px] md:leading-[43px] font-semibold text-center pb-[77px]">
           Provide awesome <span className="text-secondary">services</span>
         </h2>
-        <div className="grid grid-cols-3 gap-[55px] ">
+        <div className="grid xss:grid-cols-1 md:gap-[10px]  xl:gap-[55px] md:grid-cols-3">
           {serves.map(({ id, title, description, logo }) => (
             <div
               key={id}
@@ -49,10 +49,10 @@ const Services: React.FC<ServicesProps> = () => {
               <div className="pb-[25px]">
                 <img className="w-[74px] h-[74px] mx-auto" src={logo} alt="" />
               </div>
-              <h2 className="text-[20px] leading-[16px] tracking-[0.4 px] font-semibold text-primary pb-[18px]">
+              <h2 className="sm:text-[16px] lg:text-[20px] leading-[16px] tracking-[0.4 px] font-semibold text-primary pb-[18px]">
                 {title}
               </h2>
-              <p className="text-[16px] leading-[28px] tracking-[0.4 px] font-light text-[#4c4c4c]">
+              <p className="sm:text-[13px] lg:text-[16px] leading-[28px] tracking-[0.4 px] font-light text-[#4c4c4c]">
                 {description}
               </p>
             </div>

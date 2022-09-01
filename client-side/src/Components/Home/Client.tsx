@@ -22,11 +22,11 @@ const Client: React.FC<ClientProps> = () => {
 
   return (
     <section>
-      <div className="w-[1200px]  mx-auto py-[28px] pt-[141px] pb-[106px]">
-        <div className="grid  grid-cols-5">
+      <div className="max-w-[1200px]  mx-auto py-[28px]  lg:pt-[141px] lg:pb-[106px] px-[20px]">
+        <div className="grid xss:grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-10">
           {allImg.map(({ id, img }) => (
-            <div key={id}>
-              <img className="w-[140px] h-[52px]" src={img} alt="" />
+            <div key={id} className="mx-auto">
+              <img className="max-w-[140px] h-[52px]" src={img} alt="" />
             </div>
           ))}
         </div>

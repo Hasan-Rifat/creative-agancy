@@ -1,17 +1,17 @@
 import React from "react";
-import Slider from "./Slider";
+import Sliders from "./Slider";
 
 type WorkProps = {};
 
 const Work: React.FC<WorkProps> = () => {
   return (
-    <section className="bg-primary p-[50px]">
+    <section className="bg-primary sm:p-[25px] md:p-[50px]">
       <div>
         <div>
-          <h2 className="text-white text-[34px] leading-[43px] font-semibold text-center pt-[107px] pb-[81.27px]">
+          <h2 className="text-white  font-semibold text-center xss:py-[40px] md:pt-[107px] md:pb-[81.27px] xss:text-[24px] xss:leading-[28px] md:text-[34px] md:leading-[43px]">
             Here are some of <span className="text-secondary">our works</span>
           </h2>
-          <Slider />
+          <Sliders />
         </div>
       </div>
     </section>
