@@ -37,15 +37,15 @@ const Sliders: React.FC = () => {
         >
           <div className="">
             {sliderImg.map((img) => (
-              <div id="sliders" className="" key={img.id}>
-                <SwiperSlide>
+              <SwiperSlide key={img.id}>
+                <div id="sliders" className="">
                   <img
                     className="xss:w-[100%] xss:h-[100px] md:w-[465.49px] md:h-[334.7px] "
                     src={img.img}
                     alt="carousel-images"
                   />
-                </SwiperSlide>
-              </div>
+                </div>
+              </SwiperSlide>
             ))}
           </div>
         </Swiper>
