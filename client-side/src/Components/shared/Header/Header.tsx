@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import auth from "../../../firebase.init";
 import logo from "../../../images/logos/logo.png";
 import ActiveLink from "../ActiveLink/ActiveLink";
 import Button from "../Button";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
 
 const Header: React.FC = () => {
+  const [user, loading, error] = useAuthState(auth);
   const [mobile, SetMobile] = useState<boolean>(false);
 
   const [color, setColor] = useState<boolean>(false);
@@ -17,6 +21,10 @@ const Header: React.FC = () => {
     }
   };
   window.addEventListener("scroll", changeBg);
+
+  const logout = () => {
+    signOut(auth);
+  };
 
   // menu
   const menu: JSX.Element = (
@@ -33,12 +41,20 @@ const Header: React.FC = () => {
       <li className="mr-[10px] p-[10px] ">
         <ActiveLink to={"/contact-us"}>Contact Us</ActiveLink>
       </li>
-      <Button>Login</Button>
+      {user ? (
+        <span onClick={logout}>
+          <Button>Log Out</Button>
+        </span>
+      ) : (
+        <Link to={"/login"}>
+          <Button>Login</Button>
+        </Link>
+      )}
     </>
   );
   return (
     <header
-      className={`xss:p-[20px] sm:p-[0px] fixed left-0 right-0 top-0 ${
+      className={`xss:p-[20px] sm:p-[0px] fixed left-0 right-0 top-0 z-50 ${
         color
           ? "bg-transparent"
           : "bg-white shadow-[0px_4px_80px_rgba(0,0,0,0.1)]"

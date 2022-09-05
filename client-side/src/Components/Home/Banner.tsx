@@ -14,10 +14,10 @@ const Banner: React.FC<BannerProps> = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="max-w-[1200px]  mx-auto py-[28px] pt-[141px] pb-[106px] px-5">
+      <div className="max-w-[1200px] mx-auto xss:py-[100px] md:pt-[141px] md:pb-[106px] px-5">
         <div className="grid grid-cols-5 md:gap-[20px] lg:gap-[120px] items-end ">
           <div className="xss:col-span-5 md:col-span-2 md:order-1 xss:order-2 xss:mt-[50px]">
-            <h2 className="text-[24px] leading-[30px] md:text-[48px] md:leading-[60px] font-bold text-primary">
+            <h2 className="xss:text-[24px] xss:leading-[30px] md:text-[48px] md:leading-[60px] font-bold text-primary">
               Let’s Grow Your Brand To The Next Level
             </h2>
             <p className="w-full py-[23px] text-[16px] leading-[24px] font-normal text-primary tracking-[0.005em]">

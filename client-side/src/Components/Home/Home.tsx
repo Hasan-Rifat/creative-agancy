@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../shared/Header/Footer";
 import Banner from "./Banner";
 import Client from "./Client";
 import ClientReview from "./ClientReview";
@@ -13,6 +14,7 @@ const Home: React.FC = () => {
       <Services />
       <Work />
       <ClientReview />
+      <Footer />
     </>
   );
 };
