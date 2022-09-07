@@ -1,12 +1,13 @@
 import React from "react";
 import logo from "../../images/logos/logo.png";
-import googleLogo from "../../images/logos/Google logo.png";
+
 import InputComponents from "../shared/InputComponents";
 import Button from "../shared/Button";
 import SocialMedia from "../shared/SocialMedia";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import Loading from "../shared/Loading";
 
 type LoginProps = {};
 
@@ -14,16 +15,31 @@ const Login: React.FC<LoginProps> = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
-  const formHandler = (e: { target: any; preventDefault: () => void }) => {
+  type LocationProps = {
+    state: {
+      from: Location;
+    };
+  };
+
+  const navigate = useNavigate();
+  const location = useLocation() as unknown as LocationProps;
+
+  let from = location.state?.from?.pathname || "/";
+
+  const formHandler = (e: any) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-
+    console.log(typeof e.target.email);
     signInWithEmailAndPassword(email, password);
   };
 
-  console.log(error?.message);
-
+  if (loading) {
+    return <Loading />;
+  }
+  if (user) {
+    navigate(from, { replace: true });
+  }
   let errorElement: JSX.Element | string;
 
   if (error) {

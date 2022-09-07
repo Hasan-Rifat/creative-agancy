@@ -20,7 +20,7 @@ const SocialMedia: React.FC<SocialMediaProps> = () => {
     errorElement = "";
   }
   return (
-    <div className="mb-[25px]">
+    <div className="mb-[25px] cursor-pointer">
       <div
         onClick={() => signInWithGoogle()}
         className="mt-[32px] items-center rounded-[57px] grid grid-cols-6  px-[7px] py-[10px] border-[#C7C7C7] border-[1px]"

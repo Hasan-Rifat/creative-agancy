@@ -10,8 +10,8 @@ import { signOut } from "firebase/auth";
 const Header: React.FC = () => {
   const [user, loading, error] = useAuthState(auth);
   const [mobile, SetMobile] = useState<boolean>(false);
-
   const [color, setColor] = useState<boolean>(false);
+  const [dashboard, setDashboard] = useState<boolean>(false);
 
   const changeBg = () => {
     if (window.scrollY <= 70) {
@@ -25,7 +25,7 @@ const Header: React.FC = () => {
   const logout = () => {
     signOut(auth);
   };
-
+  console.log(user?.email?.slice(0, 1));
   // menu
   const menu: JSX.Element = (
     <>
@@ -42,9 +42,29 @@ const Header: React.FC = () => {
         <ActiveLink to={"/contact-us"}>Contact Us</ActiveLink>
       </li>
       {user ? (
-        <span onClick={logout}>
-          <Button>Log Out</Button>
-        </span>
+        <div className="relative cursor-pointer">
+          <div onClick={() => setDashboard(!dashboard)} className=" online ">
+            <div className="w-12 h-12 rounded-full flex justify-center items-center  text-red-600 bg-primary">
+              <h2 className="font-bold text-[18px] text-center">
+                {user?.email?.slice(0, 1)}
+              </h2>
+            </div>
+          </div>
+          <div
+            className={`${
+              dashboard ? "block" : "hidden"
+            } cursor-pointer flex flex-col mr-[10px] p-[15px] shadow-2xl bg-white absolute top-[110%] right-0 `}
+          >
+            <li className="mt-[10px]">
+              <ActiveLink to={"/dashboard"}>
+                <span>Dashboard</span>
+              </ActiveLink>
+            </li>
+            <li className="mt-[10px]" onClick={logout}>
+              <span>Log Out</span>
+            </li>
+          </div>
+        </div>
       ) : (
         <Link to={"/login"}>
           <Button>Login</Button>
@@ -92,7 +112,7 @@ const Header: React.FC = () => {
             <div className="xss:hidden md:block md:col-span-3 ">
               <ul
                 onClick={() => SetMobile(!mobile)}
-                className={` md:flex justify-end items-center ${
+                className={` md:flex justify-end  ${
                   mobile ? "block" : "hidden"
                 }`}
               >

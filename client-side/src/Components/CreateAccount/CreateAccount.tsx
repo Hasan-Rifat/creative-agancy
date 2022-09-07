@@ -1,9 +1,10 @@
 import React from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Button from "../shared/Button";
 import InputComponents from "../shared/InputComponents";
+import Loading from "../shared/Loading";
 import SocialMedia from "../shared/SocialMedia";
 
 type CreateAccountProps = {};
@@ -11,6 +12,17 @@ type CreateAccountProps = {};
 const CreateAccount: React.FC<CreateAccountProps> = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
+
+  type LocationProps = {
+    state: {
+      from: Location;
+    };
+  };
+
+  const navigate = useNavigate();
+  const location = useLocation() as unknown as LocationProps;
+
+  let from = location.state?.from?.pathname || "/";
 
   const formHandler = (e: { target: any; preventDefault: () => void }) => {
     e.preventDefault();
@@ -20,6 +32,13 @@ const CreateAccount: React.FC<CreateAccountProps> = () => {
 
     createUserWithEmailAndPassword(email, password);
   };
+
+  if (loading) {
+    return <Loading />;
+  }
+  if (user) {
+    navigate(from, { replace: true });
+  }
 
   let errorElement: JSX.Element | string;
 
