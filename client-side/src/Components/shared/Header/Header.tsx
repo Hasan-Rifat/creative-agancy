@@ -6,6 +6,7 @@ import ActiveLink from "../ActiveLink/ActiveLink";
 import Button from "../Button";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
+import Loading from "../Loading";
 
 const Header: React.FC = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -13,19 +14,13 @@ const Header: React.FC = () => {
   const [color, setColor] = useState<boolean>(false);
   const [dashboard, setDashboard] = useState<boolean>(false);
 
-  const changeBg = () => {
-    if (window.scrollY <= 70) {
-      return setColor(true);
-    } else {
-      return setColor(false);
-    }
-  };
-  window.addEventListener("scroll", changeBg);
-
   const logout = () => {
     signOut(auth);
   };
-  console.log(user?.email?.slice(0, 1));
+
+  if (loading) {
+    return <Loading />;
+  }
   // menu
   const menu: JSX.Element = (
     <>
@@ -72,12 +67,21 @@ const Header: React.FC = () => {
       )}
     </>
   );
+
+  const changeBg = () => {
+    if (window.scrollY >= 70) {
+      return setColor(true);
+    } else {
+      return setColor(false);
+    }
+  };
+  window.addEventListener("scroll", changeBg);
   return (
     <header
-      className={`xss:p-[20px] sm:p-[0px] fixed left-0 right-0 top-0 z-50 ${
+      className={`xss:p-[20px] sm:p-[0px] z-50   ${
         color
-          ? "bg-transparent"
-          : "bg-white shadow-[0px_4px_80px_rgba(0,0,0,0.1)]"
+          ? "bg-white shadow-[0px_4px_80px_rgba(0,0,0,0.1)] fixed left-0 right-0 top-0"
+          : "bg-transparent  absolute left-0 right-0 top-0"
       }`}
     >
       <div className="max-w-[1200px] mx-auto bg-transparent">

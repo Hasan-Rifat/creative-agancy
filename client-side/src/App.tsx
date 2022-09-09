@@ -12,6 +12,8 @@ import FooterEnd from "./Components/shared/Footer/FooterEnd";
 import Order from "./Components/Dashboard/Order";
 import Review from "./Components/Dashboard/Review";
 import ServicesList from "./Components/Dashboard/ServicesList";
+import OurPortfolio from "./Components/OurPortfolio/OurPortfolio";
+import Loading from "./Components/shared/Loading";
 
 function App() {
   const location = useLocation();
@@ -19,11 +21,13 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/our-portfolio" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/our-portfolio" element={<OurPortfolio />} />
         <Route path="/our-team" element={<Home />} />
         <Route path="/contact-us" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
+        <Route path="/loading" element={<Loading />} />
 
         <Route
           path="/dashboard"
