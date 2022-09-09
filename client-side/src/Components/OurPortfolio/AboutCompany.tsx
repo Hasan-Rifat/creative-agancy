@@ -6,13 +6,13 @@ type AboutCompanyProps = {};
 
 const AboutCompany: React.FC<AboutCompanyProps> = () => {
   return (
-    <Layout className="py-[100px]">
-      <div className="grid grid-cols-5 gap-[70px] items-center">
-        <div className="col-span-2 ">
-          <img src={img} alt="" />
+    <Layout className="xss:py-[50px] md:py-[100px] xss:px-[20px] md:px-[50px]">
+      <div className="grid grid-cols-5 sm:gap-[70px] items-center">
+        <div className="xss:col-span-5 md:col-span-2  ">
+          <img className="w-full" src={img} alt="" />
         </div>
-        <div className="col-span-3">
-          <h2 className="sm:text-[40px] md:text-[50px] font-semibold leading-[62px] mb-[35px]">
+        <div className="xss:col-span-5 md:col-span-3 xss:mt-[35px] sm:mt-[0]">
+          <h2 className="xss:text-[28px] md:text-[50px] font-semibold sm:leading-[27px] md:leading-[62px] xss:mb-[15px] sm:mb-[35px]">
             Company About.
           </h2>
           <p className="font-light text-primary text-[18px] leading-[30px]">

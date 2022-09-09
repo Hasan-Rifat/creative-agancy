@@ -118,19 +118,19 @@ const Testimonial: React.FC<TestimonialProps> = () => {
   console.log(singleR);
 
   return (
-    <Layout className="py-[120px] bg-[#f9f9f9]">
+    <Layout className="xss:py-[50px] md:py-[100px] xss:px-[20px] md:px-[50px] bg-[#f9f9f9]">
       <div>
-        <div className="grid grid-cols-2 items-center gap-10">
-          <div className="grid grid-cols-1 gap-10">
+        <div className="grid xss:grid-cols-1 md:grid-cols-2 items-center gap-10">
+          <div className="grid grid-cols-1 gap-10  sm:order-1">
             {singleR &&
               singleR.map((t: t) => (
-                <div className="animate-pulse" key={t.id}>
+                <div className="" key={t.id}>
                   <div className="">
                     <div>
-                      <p className="text-[30px] leading-[48px] text-[#18181b] font-medium ">
+                      <p className="xss:text-[16px] xss:leading-[28px] sm:text-[30px] sm:leading-[48px] text-[#18181b] font-medium ">
                         {t.description}
                       </p>
-                      <div className="text-[18px] leading-[50px] text-[#8c8c8c] font-light flex gap-2 mt-[16px]">
+                      <div className="xss:text-[16px] xss:leading-[28px] sm:text-[18px] sm:leading-[50px] text-[#8c8c8c] font-light xss:flex-col sm:flex-row flex gap-2 mt-[16px]">
                         <p className="text-[#fd4766] font-medium">{t.name}</p>
                         <p> - {t.titles}</p>
                       </div>
@@ -139,7 +139,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
                 </div>
               ))}
           </div>
-          <div className="flex justify-center flex-wrap gap-10 cursor-pointer">
+          <div className="xss:grid xss:grid-cols-2 sm:grid sm:grid-cols-3 md:flex md:justify-center md:flex-wrap gap-10 cursor-pointer sm:order-2">
             {testimonial.map((t: t) => (
               <div onClick={() => testimonialHandler(t.id)} key={t.id}>
                 <img

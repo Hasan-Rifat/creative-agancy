@@ -38,17 +38,17 @@ type reword = {
 
 const OurCompanyGrowth: React.FC<OurCompanyGrowthProps> = () => {
   return (
-    <Layout className="bg-[#f9f9f9] py-[120px]">
+    <Layout className="bg-[#f9f9f9] xss:py-[50px] md:py-[100px] xss:px-[20px] md:px-[50px]">
       <div>
         <div>
-          <h2 className="sm:text-[40px] md:text-[50px] leading-[61.09px] text-black font-bold text-center mb-[20px]">
+          <h2 className="xss:text-[24px] sm:text-[40px] md:text-[50px] leading-[61.09px] text-black font-bold text-center mb-[20px]">
             Our Company Growth
           </h2>
-          <p className="font-light text-primary text-[18px] leading-[30px] px-[25%] text-center">
+          <p className="font-light text-primary text-[18px] leading-[30px] sm:px-[5%] md:px-[25%] text-center">
             We have grown strength over the past 20 years.
           </p>
         </div>
-        <div className="grid grid-cols-4 mt-[40px] gap-7">
+        <div className="grid xss:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-[40px] gap-7">
           {rewords.map(({ id, text, Customers, icon }: reword) => (
             <div key={id} className=" bg-white rounded-[10px] p-[45px]">
               <div className="">

@@ -32,10 +32,10 @@ const images: imgs = [
 
 const Weworkedwithbrands: React.FC<WeworkedwithbrandsProps> = () => {
   return (
-    <Layout className="py-[120px]">
+    <Layout className="xss:py-[50px] md:py-[100px] xss:px-[20px] md:px-[50px]">
       <div>
-        <div className="mb-30px">
-          <h2 className="sm:text-[40px] md:text-[50px] leading-[61.09px] text-black font-bold text-center mb-[20px]">
+        <div className="xss:mb-[15px] sm:mb-30px">
+          <h2 className="xss:text-[24px]  sm:text-[40px] md:text-[50px] leading-[61.09px] text-black font-bold text-center mb-[20px]">
             We worked with brands.
           </h2>
         </div>
