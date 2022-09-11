@@ -1,17 +1,18 @@
 import React from "react";
+import img from "../../../images/customer/about-11.jpg";
 
 type FooterLeftProps = {};
 
 const FooterLeft: React.FC<FooterLeftProps> = () => {
   return (
-    <div>
-      <h2 className="xss:text-[24px] xss:leading-[30px] md:text-[34px] md:leading-[43px] font-semibold text-primary tracking-[0.396px]">
-        Let us handle your <br /> project, professionally.
-      </h2>
-      <p className="mt-[32px] text-[14px] tracking-[0.396px]">
-        With well written codes, we build amazing apps for all platforms, mobile
-        and web apps in general.
-      </p>
+    <div className="">
+      <div>
+        <img
+          className="rounded-[20px] shadow-[0_10px_15px_0_rgba(253,71,102,0.1)]"
+          src={img}
+          alt=""
+        />
+      </div>
     </div>
   );
 };

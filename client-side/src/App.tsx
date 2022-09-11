@@ -14,6 +14,8 @@ import Review from "./Components/Dashboard/Review";
 import ServicesList from "./Components/Dashboard/ServicesList";
 import OurPortfolio from "./Components/OurPortfolio/OurPortfolio";
 import Loading from "./Components/shared/Loading";
+import OurServices from "./Components/OurServices/OurServices";
+import ContactUs from "./Contact/Contact";
 
 function App() {
   const location = useLocation();
@@ -23,8 +25,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/our-portfolio" element={<OurPortfolio />} />
-        <Route path="/our-team" element={<Home />} />
-        <Route path="/contact-us" element={<Home />} />
+        <Route path="/our-services" element={<OurServices />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/loading" element={<Loading />} />

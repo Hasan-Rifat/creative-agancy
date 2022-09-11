@@ -2,6 +2,7 @@ import React from "react";
 import service1 from "../../images/icons/service1.png";
 import service2 from "../../images/icons/service2.png";
 import service3 from "../../images/icons/service3.png";
+import Layout from "../shared/Layout";
 
 type ServicesProps = {};
 
@@ -29,20 +30,27 @@ const Services: React.FC<ServicesProps> = () => {
       logo: service3,
     },
   ];
+
+  type services = {
+    id: number;
+    title: string;
+    description: string;
+    logo: string;
+  };
   return (
-    <section>
-      <div className="max-w-[1200px]  mx-auto py-[70px] pb-[114px]">
+    <Layout className="py-[70px] pb-[114px] bg-[#f9f9f9]">
+      <div>
         <h2 className=" xss:text-[24px] xss:leading-[28px] md:text-[34px] md:leading-[43px] font-semibold text-center pb-[77px]">
           Provide awesome <span className="text-secondary">services</span>
         </h2>
-        <div className="grid xss:grid-cols-1 md:gap-[10px]  xl:gap-[55px] md:grid-cols-3">
-          {serves.map(({ id, title, description, logo }) => (
+        <div className="grid xss:grid-cols-1 md:gap-[10px]  xl:gap-[30px] md:grid-cols-3">
+          {serves.map(({ id, title, description, logo }: services) => (
             <div
               key={id}
-              className={`text-center pt-[34px] pb-[39px] px-[50px] rounded-[10px] 
+              className={`bg-white text-center pt-[34px] pb-[39px] px-[50px] rounded-[10px] hover:translate-y-[-5px] ease-in-out duration-300  hover:shadow-[0px_4px_80px_rgba(0,0,0,0.1)]
               ${
                 title === "Graphic design"
-                  ? " shadow-[0px_4px_80px_rgba(0,0,0,0.1)] "
+                  ? " shadow-[0_10px_15px_0_rgba(253,71,102,0.1)] "
                   : ""
               }`}
             >
@@ -59,7 +67,7 @@ const Services: React.FC<ServicesProps> = () => {
           ))}
         </div>
       </div>
-    </section>
+    </Layout>
   );
 };
 export default Services;

@@ -49,7 +49,7 @@ body {
 }
 
 .container {
-  width: 100vw;
+  width: 99vw;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -70,14 +70,14 @@ body {
   stroke-dasharray: 0.7 0.3;
   stroke-linecap: round;
   stroke-width: 3px;
-  stroke: #7ab259;
+  stroke: #fd4766;
 }
 .load.one {
   animation: load 1.5s infinite ease-in;
   animation-direction: reverse;
 }
 .load.two {
-  fill: #7ab259;
+  fill: #fd4766;
 }
 .load.three {
   animation: load 1.5s infinite;

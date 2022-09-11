@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import auth from "../../../firebase.init";
 import logo from "../../../images/logos/logo.png";
 import ActiveLink from "../ActiveLink/ActiveLink";
@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   const [mobile, SetMobile] = useState<boolean>(false);
   const [color, setColor] = useState<boolean>(false);
   const [dashboard, setDashboard] = useState<boolean>(false);
-
+  const location = useLocation();
   const logout = () => {
     signOut(auth);
   };
@@ -31,7 +31,7 @@ const Header: React.FC = () => {
         <ActiveLink to={"/our-portfolio"}>Our Portfolio</ActiveLink>
       </li>
       <li className="mr-[10px] p-[10px] ">
-        <ActiveLink to={"/our-team"}>Our Team</ActiveLink>
+        <ActiveLink to={"/our-services"}>Our Services</ActiveLink>
       </li>
       <li className="mr-[10px] p-[10px] ">
         <ActiveLink to={"/contact-us"}>Contact Us</ActiveLink>
@@ -76,12 +76,13 @@ const Header: React.FC = () => {
     }
   };
   window.addEventListener("scroll", changeBg);
+
   return (
     <header
       className={`xss:p-[20px] sm:p-[0px] z-50   ${
         color
           ? "bg-white shadow-[0px_4px_80px_rgba(0,0,0,0.1)] fixed left-0 right-0 top-0"
-          : "bg-transparent  absolute left-0 right-0 top-0"
+          : "bg-transparent  absolute left-0 right-0 top-0 "
       }`}
     >
       <div className="max-w-[1200px] mx-auto bg-transparent">

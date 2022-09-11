@@ -13,13 +13,23 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper";
 
-const sliderImg = [
+type sliderImg = {
+  id: number;
+  img: string;
+}[];
+
+const sliderImg: sliderImg = [
   { id: 1, img: img1 },
   { id: 2, img: img2 },
   { id: 3, img: img3 },
   { id: 4, img: img4 },
   { id: 5, img: img5 },
 ];
+
+type images = {
+  id: number;
+  img: string;
+};
 
 const Sliders: React.FC = () => {
   return (
@@ -36,7 +46,7 @@ const Sliders: React.FC = () => {
           className="mySwiper"
         >
           <div className="">
-            {sliderImg.map((img) => (
+            {sliderImg.map((img: images) => (
               <SwiperSlide key={img.id}>
                 <div id="sliders" className="">
                   <img

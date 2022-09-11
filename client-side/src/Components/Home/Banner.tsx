@@ -6,14 +6,7 @@ type BannerProps = {};
 
 const Banner: React.FC<BannerProps> = () => {
   return (
-    <section
-      style={{
-        backgroundImage: `url(${bg})`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "top center",
-        backgroundSize: "cover",
-      }}
-    >
+    <section className="bg-[#f8f8f8]">
       <div className="max-w-[1200px] mx-auto xss:py-[100px] md:pt-[141px] md:pb-[106px] px-5">
         <div className="grid grid-cols-5 md:gap-[20px] lg:gap-[120px] items-end ">
           <div className="xss:col-span-5 md:col-span-2 md:order-1 xss:order-2 xss:mt-[50px]">
@@ -24,7 +17,7 @@ const Banner: React.FC<BannerProps> = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus
               commodo ipsum duis laoreet maecenas. Feugiat
             </p>
-            <button className="font-roboto px-[60px] py-[10px] text-white bg-primary text-[16px] leading-[24px] font-normal rounded-[5px] hover:bg-secondary">
+            <button className="hover:translate-y-[-5px] hover:shadow-[0px_4px_80px_rgba(0,0,0,0.1)] ease-in-out duration-300  font-roboto px-[60px] py-[10px] text-white bg-primary text-[16px] leading-[24px] font-normal rounded-[5px] hover:bg-secondary">
               Hire us
             </button>
           </div>

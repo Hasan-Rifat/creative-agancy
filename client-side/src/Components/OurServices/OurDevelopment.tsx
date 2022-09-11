@@ -1,0 +1,104 @@
+import React from "react";
+import Layout from "../shared/Layout";
+
+import { FiMonitor } from "react-icons/fi";
+import { VscDeviceMobile } from "react-icons/vsc";
+import { BsFillPersonLinesFill } from "react-icons/bs";
+import { FaConnectdevelop } from "react-icons/fa";
+import { AiOutlineLineChart } from "react-icons/ai";
+import { RiAwardFill } from "react-icons/ri";
+
+type OurDevelopmentProps = {};
+
+const OurDevelopment: React.FC<OurDevelopmentProps> = () => {
+  type services = {
+    id: number;
+    title: string;
+    description: string;
+    logo: JSX.Element;
+  }[];
+
+  const services: services = [
+    {
+      id: 1,
+      title: "Website Development",
+      description:
+        "It is a long established fact that a reader will be distracted by the readable content of a page.",
+      logo: <FiMonitor />,
+    },
+    {
+      id: 2,
+      title: "App Development",
+      description:
+        "There are many variations of passages of Lorem Ipsum available, but the majority have.",
+      logo: <VscDeviceMobile />,
+    },
+    {
+      id: 3,
+      title: "Marketing & Reporting",
+      description:
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in all.",
+      logo: <BsFillPersonLinesFill />,
+    },
+    {
+      id: 4,
+      title: "Game Development",
+      description:
+        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in all.",
+      logo: <FaConnectdevelop />,
+    },
+    {
+      id: 5,
+      title: "Business Development",
+      description:
+        "The first line of lorem Ipsumior ipsum dolor sit amet comes from a line in section.",
+      logo: <AiOutlineLineChart />,
+    },
+    {
+      id: 6,
+      title: "Reporting Development",
+      description:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.",
+      logo: <RiAwardFill />,
+    },
+  ];
+
+  type service = {
+    id: number;
+    title: string;
+    description: string;
+    logo: JSX.Element;
+  };
+  return (
+    <Layout className="xss:py-[50px] md:py-[120px] xss:px-[20px] md:px-[50px]">
+      <div>
+        <div>
+          <div>
+            <h2 className="text-[50px] font-semibold leading-[62px] pt-[20px] pb-[30px]">
+              Development
+            </h2>
+          </div>
+        </div>
+        <div className="grid xss:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] mt-[40px]">
+          {services.map((service: service) => (
+            <div
+              className="hover:translate-y-[-5px] hover:shadow-[0_10px_15px_0_rgba(253,71,102,0.1)]  bg-[#f6f6f6] p-[50px] ease-in-out duration-300 rounded-[10px]"
+              key={service.id}
+            >
+              <p className="mb-[23px] text-[47px] text-[#fd4766] rounded-[10px]">
+                {service.logo}
+              </p>
+              <h3 className="mb-[19px] font-semibold text-[20px] text-[#1f1f25]">
+                {service.title}
+              </h3>
+              <p className="text-[18px] leading-[30px] text-[#49494e]">
+                {service.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Layout>
+  );
+};
+export default OurDevelopment;

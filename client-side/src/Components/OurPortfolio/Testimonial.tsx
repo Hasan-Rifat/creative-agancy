@@ -115,8 +115,6 @@ const Testimonial: React.FC<TestimonialProps> = () => {
     }
   };
 
-  console.log(singleR);
-
   return (
     <Layout className="xss:py-[50px] md:py-[100px] xss:px-[20px] md:px-[50px] bg-[#f9f9f9]">
       <div>
@@ -124,7 +122,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
           <div className="grid grid-cols-1 gap-10  sm:order-1">
             {singleR &&
               singleR.map((t: t) => (
-                <div className="" key={t.id}>
+                <div className="before:" key={t.id}>
                   <div className="">
                     <div>
                       <p className="xss:text-[16px] xss:leading-[28px] sm:text-[30px] sm:leading-[48px] text-[#18181b] font-medium ">
