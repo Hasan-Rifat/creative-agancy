@@ -1,6 +1,5 @@
 import React from "react";
 import image from "../../images/logos/Frame.png";
-import bg from "../../images/logos/banner.svg";
 
 type BannerProps = {};
 

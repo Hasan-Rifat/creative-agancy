@@ -1,11 +1,11 @@
+import { signOut } from "firebase/auth";
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
 import logo from "../../../images/logos/logo.png";
 import ActiveLink from "../ActiveLink/ActiveLink";
 import Button from "../Button";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { signOut } from "firebase/auth";
 import Loading from "../Loading";
 
 const Header: React.FC = () => {
@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   const [mobile, SetMobile] = useState<boolean>(false);
   const [color, setColor] = useState<boolean>(false);
   const [dashboard, setDashboard] = useState<boolean>(false);
-  const location = useLocation();
+
   const logout = () => {
     signOut(auth);
   };
@@ -24,16 +24,16 @@ const Header: React.FC = () => {
   // menu
   const menu: JSX.Element = (
     <>
-      <li className="mr-[10px] p-[10px] ">
+      <li className="mr-[10px] p-[10px] text-primary">
         <ActiveLink to={"/"}>Home </ActiveLink>
       </li>
-      <li className="mr-[10px] p-[10px] ">
+      <li className="mr-[10px] p-[10px] text-primary">
         <ActiveLink to={"/our-portfolio"}>Our Portfolio</ActiveLink>
       </li>
-      <li className="mr-[10px] p-[10px] ">
+      <li className="mr-[10px] p-[10px] text-primary">
         <ActiveLink to={"/our-services"}>Our Services</ActiveLink>
       </li>
-      <li className="mr-[10px] p-[10px] ">
+      <li className="mr-[10px] p-[10px] text-primary">
         <ActiveLink to={"/contact-us"}>Contact Us</ActiveLink>
       </li>
       {user ? (
