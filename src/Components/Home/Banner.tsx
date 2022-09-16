@@ -5,7 +5,7 @@ type BannerProps = {};
 
 const Banner: React.FC<BannerProps> = () => {
   return (
-    <section className="bg-[#f8f8f8]">
+    <section className="bg-[#fbd062]">
       <div className="max-w-[1200px] mx-auto xss:py-[100px] md:pt-[141px] md:pb-[106px] px-5">
         <div className="grid grid-cols-5 md:gap-[20px] lg:gap-[120px] items-end ">
           <div className="xss:col-span-5 md:col-span-2 md:order-1 xss:order-2 xss:mt-[50px]">

@@ -1,24 +1,24 @@
 import React from "react";
 import Layout from "../shared/Layout";
 
-import { FiMonitor } from "react-icons/fi";
-import { VscDeviceMobile } from "react-icons/vsc";
+import { AiOutlineLineChart } from "react-icons/ai";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { FaConnectdevelop } from "react-icons/fa";
-import { AiOutlineLineChart } from "react-icons/ai";
+import { FiMonitor } from "react-icons/fi";
 import { RiAwardFill } from "react-icons/ri";
+import { VscDeviceMobile } from "react-icons/vsc";
 
 type OurDevelopmentProps = {};
 
 const OurDevelopment: React.FC<OurDevelopmentProps> = () => {
-  type services = {
+  type s = {
     id: number;
     title: string;
     description: string;
     logo: JSX.Element;
   }[];
 
-  const services: services = [
+  const services: s = [
     {
       id: 1,
       title: "Website Development",
