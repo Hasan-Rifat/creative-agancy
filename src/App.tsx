@@ -15,7 +15,7 @@ import ServicesList from "./Components/Dashboard/ServicesList";
 import OurPortfolio from "./Components/OurPortfolio/OurPortfolio";
 import Loading from "./Components/shared/Loading";
 import OurServices from "./Components/OurServices/OurServices";
-import ContactUs from "./Contact/Contact";
+import ContactUs from "./Components/Contact/Contact";
 
 function App() {
   const location = useLocation();

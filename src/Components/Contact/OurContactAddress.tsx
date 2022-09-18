@@ -1,19 +1,19 @@
 import React from "react";
 import { FiMail, FiPhoneCall } from "react-icons/fi";
 import { MdOutlineLocationOn } from "react-icons/md";
-import Layout from "../Components/shared/Layout";
+import Layout from "../shared/Layout";
 
 type OurContactAddressProps = {};
 
 const OurContactAddress: React.FC<OurContactAddressProps> = () => {
-  type services = {
+  type s = {
     id: number;
     title: string;
     description: string;
     logo: JSX.Element;
   }[];
 
-  const services: services = [
+  const services: s = [
     {
       id: 1,
       title: "Contact Phone Number",

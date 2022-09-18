@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../Components/shared/Layout";
+import Layout from "../shared/Layout";
 
 type ContactUsTitleProps = {};
 

@@ -1,13 +1,11 @@
 import React from "react";
-import service1 from "../../images/icons/service1.png";
-import service2 from "../../images/icons/service2.png";
-import service3 from "../../images/icons/service3.png";
+import useServices from "../../Hooks/useServices";
 import Layout from "../shared/Layout";
 
 type ServicesProps = {};
 
 const Services: React.FC<ServicesProps> = () => {
-  const serves = [
+  /* const serves = [
     {
       id: 1,
       title: "Web & Mobile design",
@@ -29,7 +27,8 @@ const Services: React.FC<ServicesProps> = () => {
         "With well written codes, we build amazing apps for all platforms, mobile and web apps in general.",
       logo: service3,
     },
-  ];
+  ]; */
+  const [service] = useServices();
 
   type services = {
     id: number;
@@ -37,6 +36,8 @@ const Services: React.FC<ServicesProps> = () => {
     description: string;
     logo: string;
   };
+  type ser = services;
+
   return (
     <Layout className="py-[70px] pb-[114px] bg-[#f9f9f9]">
       <div>
@@ -44,7 +45,7 @@ const Services: React.FC<ServicesProps> = () => {
           Provide awesome <span className="text-secondary">services</span>
         </h2>
         <div className="grid xss:grid-cols-1 md:gap-[10px]  xl:gap-[30px] md:grid-cols-3">
-          {serves.map(({ id, title, description, logo }: services) => (
+          {service.map(({ id, title, description, logo }: ser) => (
             <div
               key={id}
               className={`bg-white text-center pt-[34px] pb-[39px] px-[50px] rounded-[10px] hover:translate-y-[-5px] ease-in-out duration-300  hover:shadow-[0px_4px_80px_rgba(0,0,0,0.1)]

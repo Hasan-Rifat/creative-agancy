@@ -1,5 +1,5 @@
 import React from "react";
-import FooterTop from "../Components/shared/Footer/Footer";
+import FooterTop from "../shared/Footer/Footer";
 import ContactUsTitle from "./ContactUsTitle";
 import OurContactAddress from "./OurContactAddress";
 
