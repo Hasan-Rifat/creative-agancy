@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 type t = {
-  id: number;
+  _id: number;
   logo: string;
   description: string;
   title: string;

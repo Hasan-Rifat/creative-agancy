@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import useServices from "../../Hooks/useServices";
 import Layout from "../shared/Layout";
 
@@ -31,12 +32,18 @@ const Services: React.FC<ServicesProps> = () => {
   const [service] = useServices();
 
   type services = {
-    id: number;
+    _id: number;
     title: string;
     description: string;
     logo: string;
   };
   type ser = services;
+
+  const navigate = useNavigate();
+
+  const navigateServiceDetails = (id: number) => {
+    navigate(`/service/${id}`);
+  };
 
   return (
     <Layout className="py-[70px] pb-[114px] bg-[#f9f9f9]">
@@ -45,10 +52,11 @@ const Services: React.FC<ServicesProps> = () => {
           Provide awesome <span className="text-secondary">services</span>
         </h2>
         <div className="grid xss:grid-cols-1 md:gap-[10px]  xl:gap-[30px] md:grid-cols-3">
-          {service.map(({ id, title, description, logo }: ser) => (
+          {service.map(({ _id, title, description, logo }: ser) => (
             <div
-              key={id}
-              className={`bg-white text-center pt-[34px] pb-[39px] px-[50px] rounded-[10px] hover:translate-y-[-5px] ease-in-out duration-300  hover:shadow-[0px_4px_80px_rgba(0,0,0,0.1)]
+              onClick={() => navigateServiceDetails(_id)}
+              key={_id}
+              className={`cursor-pointer bg-white text-center pt-[34px] pb-[39px] px-[50px] rounded-[10px] hover:translate-y-[-5px] ease-in-out duration-300  hover:shadow-[0px_4px_80px_rgba(0,0,0,0.1)]
               ${
                 title === "Graphic design"
                   ? " shadow-[0_10px_15px_0_rgba(253,71,102,0.1)] "
