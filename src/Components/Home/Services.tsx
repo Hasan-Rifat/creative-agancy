@@ -6,38 +6,14 @@ import Layout from "../shared/Layout";
 type ServicesProps = {};
 
 const Services: React.FC<ServicesProps> = () => {
-  /* const serves = [
-    {
-      id: 1,
-      title: "Web & Mobile design",
-      description:
-        "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
-      logo: service1,
-    },
-    {
-      id: 2,
-      title: "Graphic design",
-      description:
-        "Amazing flyers, social media posts and brand representations that would make your brand stand out.",
-      logo: service2,
-    },
-    {
-      id: 3,
-      title: "Web development",
-      description:
-        "With well written codes, we build amazing apps for all platforms, mobile and web apps in general.",
-      logo: service3,
-    },
-  ]; */
   const [service] = useServices();
 
-  type services = {
+  type ser = {
     _id: number;
     title: string;
     description: string;
     logo: string;
   };
-  type ser = services;
 
   const navigate = useNavigate();
 
@@ -70,7 +46,7 @@ const Services: React.FC<ServicesProps> = () => {
                 {title}
               </h2>
               <p className="sm:text-[13px] lg:text-[16px] leading-[28px] tracking-[0.4 px] font-light text-[#4c4c4c]">
-                {description}
+                {description.slice(0, 95)}
               </p>
             </div>
           ))}

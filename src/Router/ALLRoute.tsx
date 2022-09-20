@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import Checkout from "../Components/Checkout/Checkout";
 import ContactUs from "../Components/Contact/Contact";
 import CreateAccount from "../Components/CreateAccount/CreateAccount";
 import Dashboards from "../Components/Dashboard/Dashboards";
@@ -33,7 +34,22 @@ const AllRoute: React.FC<RouteProps> = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/loading" element={<Loading />} />
-        <Route path="/service/:id" element={<ServicesDetails />} />
+        <Route
+          path="/service/:id"
+          element={
+            <RequireAuthProps>
+              <ServicesDetails />
+            </RequireAuthProps>
+          }
+        />
+        <Route
+          path="/checkout/:id"
+          element={
+            <RequireAuthProps>
+              <Checkout />
+            </RequireAuthProps>
+          }
+        />
 
         <Route
           path="/dashboard"
