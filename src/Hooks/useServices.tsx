@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../Components/shared/Loading";
 
 type t = {
   _id: number;
@@ -9,13 +10,22 @@ type t = {
 };
 
 const useServices = () => {
-  const [service, setService] = useState<t[]>([]);
+  const { isLoading, data: service } = useQuery(["service"], () =>
+    fetch(`https://creative-agancy-server.vercel.app//services`).then((res) =>
+      res.json()
+    )
+  );
+
+  if (isLoading) {
+    return <Loading />;
+  }
+  /* const [service, setService] = useState<t[]>([]);
   useEffect(() => {
     const url = "https://creative-agancy-server.vercel.app/services";
     fetch(url)
       .then((res) => res.json())
       .then((data) => setService(data));
-  }, []);
+  }, []); */
 
   return [service];
 };
