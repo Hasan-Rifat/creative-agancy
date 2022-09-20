@@ -13,7 +13,9 @@ const ServicesDetails: React.FC<ServicesDetailsProps> = () => {
   const navigate = useNavigate();
 
   const { isLoading, data: singleItem } = useQuery(["service", id], () =>
-    fetch(`http://localhost:5000/service/${id}`).then((res) => res.json())
+    fetch(`https://creative-agancy-server.vercel.app/service/${id}`).then(
+      (res) => res.json()
+    )
   );
 
   if (isLoading) {

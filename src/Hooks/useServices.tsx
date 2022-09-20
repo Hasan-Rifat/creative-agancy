@@ -11,7 +11,7 @@ type t = {
 const useServices = () => {
   const [service, setService] = useState<t[]>([]);
   useEffect(() => {
-    const url = "http://localhost:5000/services";
+    const url = "https://creative-agancy-server.vercel.app/services";
     fetch(url)
       .then((res) => res.json())
       .then((data) => setService(data));
