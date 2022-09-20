@@ -11,7 +11,7 @@ type CheckoutProps = {};
 const Checkout: React.FC<CheckoutProps> = () => {
   const { id } = useParams();
   const { isLoading, data: singleItem } = useQuery(["service", id], () =>
-    fetch(`https://creative-agancy-server.vercel.app/service/${id}`).then(
+    fetch(`https://creative-agancy-server.onrender.com/service/${id}`).then(
       (res) => res.json()
     )
   );

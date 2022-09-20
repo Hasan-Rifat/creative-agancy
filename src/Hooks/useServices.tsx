@@ -7,25 +7,20 @@ type t = {
   description: string;
   title: string;
   name: string;
-};
+}[];
 
 const useServices = () => {
-  const { isLoading, data: service } = useQuery(["service"], () =>
-    fetch(`https://creative-agancy-server.vercel.app//services`).then((res) =>
-      res.json()
-    )
+  const { isLoading, data: service } = useQuery<any, unknown, any, string[]>(
+    ["service"],
+    () =>
+      fetch(`https://creative-agancy-server.onrender.com/services`).then(
+        (res) => res.json()
+      )
   );
 
   if (isLoading) {
     return <Loading />;
   }
-  /* const [service, setService] = useState<t[]>([]);
-  useEffect(() => {
-    const url = "https://creative-agancy-server.vercel.app/services";
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setService(data));
-  }, []); */
 
   return [service];
 };
