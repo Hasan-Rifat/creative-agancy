@@ -1,26 +1,21 @@
-import { useQuery } from "@tanstack/react-query";
-import Loading from "../Components/shared/Loading";
+import { useEffect, useState } from "react";
 
-type t = {
-  _id: number;
-  logo: string;
-  description: string;
-  title: string;
-  name: string;
-}[];
+// type useServicesProps = { useServices: any[] | JSX.Element };
 
 const useServices = () => {
-  const { isLoading, data: service } = useQuery<any, unknown, any, string[]>(
+  /* const { isLoading, data: service } = useQuery<any, unknown, any, string[]>(
     ["service"],
     () =>
-      fetch(`https://creative-agancy-server.onrender.com/services`).then(
-        (res) => res.json()
+      fetch(`https://creative-agancy-server.vercel.app//services`).then((res) =>
+        res.json()
       )
   );
-
-  if (isLoading) {
-    return <Loading />;
-  }
+ */ const [service, setService] = useState<never[]>([]);
+  useEffect(() => {
+    fetch("https://creative-agancy-server.onrender.com/services")
+      .then((res) => res.json())
+      .then((data) => setService(data));
+  }, []);
 
   return [service];
 };
