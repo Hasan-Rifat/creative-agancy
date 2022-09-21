@@ -14,7 +14,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://creative-agancy-server.onrender/create-payment-intent", {
+    fetch("https://creative-agancy-server.onrender.com/create-payment-intent", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ price }),
