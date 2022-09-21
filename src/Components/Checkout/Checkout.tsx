@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Button from "../shared/Button";
 import InputComponents from "../shared/InputComponents";
 import Layout from "../shared/Layout";
 import Loading from "../shared/Loading";
-
 type CheckoutProps = {};
 
 const Checkout: React.FC<CheckoutProps> = () => {
@@ -22,33 +21,14 @@ const Checkout: React.FC<CheckoutProps> = () => {
 
   const formHandler = (e: any) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const firstName = e.target.firstName.value;
-    const lastName = e.target.lastName.value;
-    const country = e.target.country.value;
-    const townCity = e.target.townCity.value;
-    const stateCountry = e.target.stateCounty.value;
-    const postCode = e.target.postcodeZip.value;
-    const phoneNumber = e.target.phoneNumber.value;
-
-    console.log(
-      " email = ",
-      email,
-      ", firstName = ",
-      firstName,
-      ", lastName = ",
-      lastName,
-      ", country = ",
-      country,
-      ", townCity = ",
-      townCity,
-      ", stateCountry = ",
-      stateCountry,
-      ", postCode = ",
-      postCode,
-      ", phoneNumber = ",
-      phoneNumber
-    );
+    // const email = e.target.email.value;
+    // const firstName = e.target.firstName.value;
+    // const lastName = e.target.lastName.value;
+    // const country = e.target.country.value;
+    // const townCity = e.target.townCity.value;
+    // const stateCountry = e.target.stateCounty.value;
+    // const postCode = e.target.postcodeZip.value;
+    // const phoneNumber = e.target.phoneNumber.value;
   };
   return (
     <Layout className="py-[150px] mx-[10px] bg-[#f5f8ff]">
@@ -184,7 +164,9 @@ const Checkout: React.FC<CheckoutProps> = () => {
               </div>
 
               <button type="submit" className="mt-[16px]">
-                <Button>Confirm Order</Button>
+                <Link to={`/payment/${singleItem._id}`}>
+                  <Button>Confirm Order</Button>
+                </Link>
               </button>
             </form>
           </div>

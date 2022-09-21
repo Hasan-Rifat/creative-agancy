@@ -12,6 +12,7 @@ import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import OurPortfolio from "../Components/OurPortfolio/OurPortfolio";
 import OurServices from "../Components/OurServices/OurServices";
+import Payment from "../Components/Payment/Payment";
 import ServicesDetails from "../Components/ServicesDetails/ServicesDetails";
 import FooterEnd from "../Components/shared/Footer/FooterEnd";
 import Header from "../Components/shared/Header/Header";
@@ -47,6 +48,14 @@ const AllRoute: React.FC<RouteProps> = () => {
           element={
             <RequireAuthProps>
               <Checkout />
+            </RequireAuthProps>
+          }
+        />
+        <Route
+          path="/payment/:id"
+          element={
+            <RequireAuthProps>
+              <Payment />
             </RequireAuthProps>
           }
         />
