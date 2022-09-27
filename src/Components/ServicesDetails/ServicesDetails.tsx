@@ -14,7 +14,7 @@ const ServicesDetails: React.FC<ServicesDetailsProps> = () => {
 
   const { isLoading, data: singleItem } = useQuery(["service", id], () =>
     fetch(
-      `https://creative-agancy-server.vercel.app/api/v1/service/${id}`
+      `https://creative-agancy-server.vercel.app/api/v1/services/${id}`
     ).then((res) => res.json())
   );
 
