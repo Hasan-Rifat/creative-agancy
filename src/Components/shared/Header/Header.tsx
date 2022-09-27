@@ -10,7 +10,7 @@ import Button from "../Button";
 import Loading from "../Loading";
 
 const Header: React.FC = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [mobile, SetMobile] = useState<boolean>(false);
   const [color, setColor] = useState<boolean>(false);
   const [dashboard, setDashboard] = useState<boolean>(false);
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
       {user ? (
         <div className="relative flex justify-center items-center ">
           <div className=" flex gap-2 items-center  online ">
-            {user?.displayName && (
+            {user.displayName && (
               <div className=" rounded-full  text-red-600 bg-primary">
                 <h2 className="font-bold text-[18px] text-center px-[15px]">
                   {user?.displayName}
