@@ -1,13 +1,13 @@
 import React from "react";
-import logo from "../../images/logos/logo.png";
+import logo from "../../../images/logos/logo.png";
 
-import InputComponents from "../shared/InputComponents";
-import Button from "../shared/Button";
-import SocialMedia from "../shared/SocialMedia";
-import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
-import Loading from "../shared/Loading";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import auth from "../../../firebase.init";
+import Button from "../Button";
+import InputComponents from "../InputComponents";
+import Loading from "../Loading";
+import SocialMedia from "../SocialMedia";
 
 type LoginProps = {};
 

@@ -1,17 +1,21 @@
 import React from "react";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import auth from "../../firebase.init";
-import Button from "../shared/Button";
-import InputComponents from "../shared/InputComponents";
-import Loading from "../shared/Loading";
-import SocialMedia from "../shared/SocialMedia";
+import auth from "../../../firebase.init";
+import Button from "../Button";
+import InputComponents from "../InputComponents";
+import Loading from "../Loading";
+import SocialMedia from "../SocialMedia";
 
 type CreateAccountProps = {};
 
 const CreateAccount: React.FC<CreateAccountProps> = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
   type LocationProps = {
     state: {
@@ -24,16 +28,21 @@ const CreateAccount: React.FC<CreateAccountProps> = () => {
 
   let from = location.state?.from?.pathname || "/";
 
-  const formHandler = (e: { target: any; preventDefault: () => void }) => {
+  const formHandler = async (e: {
+    target: any;
+    preventDefault: () => void;
+  }) => {
     e.preventDefault();
     const email = e.target.email.value;
     const userName = e.target.userName.value;
     const password = e.target.password.value;
 
-    createUserWithEmailAndPassword(email, password);
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: userName });
+    console.log(email, userName, password);
   };
 
-  if (loading) {
+  if (loading || updating) {
     return <Loading />;
   }
   if (user) {
@@ -42,7 +51,7 @@ const CreateAccount: React.FC<CreateAccountProps> = () => {
 
   let errorElement: JSX.Element | string;
 
-  if (error) {
+  if (error || updateError) {
     errorElement = (
       <p className="text-center mt-[20px] text-red-500">
         {error?.message.slice(9)}
@@ -51,6 +60,7 @@ const CreateAccount: React.FC<CreateAccountProps> = () => {
   } else {
     errorElement = "";
   }
+
   return (
     <section>
       <div className="mx-auto max-w-[1200px] py-[150px]">

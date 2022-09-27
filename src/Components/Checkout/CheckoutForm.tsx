@@ -14,11 +14,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("https://creative-agancy-server.onrender.com/create-payment-intent", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ price }),
-    })
+    fetch(
+      "https://creative-agancy-server.vercel.app/api/v1/create-payment-intent",
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ price }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
@@ -43,7 +46,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem }) => {
     setCardError(error?.message || "");
     setSuccess("");
 
-    // confirm payment
+    // confirm payment class
     const { paymentIntent, error: intentError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -54,6 +57,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem }) => {
           },
         },
       });
+    console.log(paymentIntent);
     if (intentError) {
       setCardError(error?.message || "");
     } else {

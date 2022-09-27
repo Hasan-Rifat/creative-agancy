@@ -15,9 +15,9 @@ const Payment: React.FC<PaymentProps> = () => {
   const { id } = useParams();
 
   const { isLoading, data: singleItem } = useQuery(["service", id], () =>
-    fetch(`https://creative-agancy-server.onrender.com/service/${id}`).then(
-      (res) => res.json()
-    )
+    fetch(
+      `https://creative-agancy-server.vercel.app/api/v1/service/${id}`
+    ).then((res) => res.json())
   );
   if (isLoading) {
     return <Loading />;

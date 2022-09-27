@@ -1,6 +1,7 @@
 import { signOut } from "firebase/auth";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { CgChevronDownO } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
 import logo from "../../../images/logos/logo.png";
@@ -37,13 +38,17 @@ const Header: React.FC = () => {
         <ActiveLink to={"/contact-us"}>Contact Us</ActiveLink>
       </li>
       {user ? (
-        <div className="relative cursor-pointer">
-          <div onClick={() => setDashboard(!dashboard)} className=" online ">
-            <div className="w-12 h-12 rounded-full flex justify-center items-center  text-red-600 bg-primary">
-              <h2 className="font-bold text-[18px] text-center">
-                {user?.email?.slice(0, 1)}
+        <div className="relative flex justify-center items-center ">
+          <div className=" flex gap-2 items-center  online ">
+            <div className=" rounded-full  text-red-600 bg-primary">
+              <h2 className="font-bold text-[18px] text-center px-[15px]">
+                {user?.displayName}
               </h2>
             </div>
+            <CgChevronDownO
+              onClick={() => setDashboard(!dashboard)}
+              className="cursor-pointer "
+            />
           </div>
           <div
             className={`${
