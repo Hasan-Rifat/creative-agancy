@@ -5,6 +5,7 @@ import {
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import useAdmin from "../../../Hooks/useAdmin";
 import Button from "../Button";
 import InputComponents from "../InputComponents";
 import Loading from "../Loading";
@@ -16,6 +17,8 @@ const CreateAccount: React.FC<CreateAccountProps> = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+  const [token] = useAdmin(user);
 
   type LocationProps = {
     state: {
@@ -39,13 +42,13 @@ const CreateAccount: React.FC<CreateAccountProps> = () => {
 
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: userName });
-    console.log(email, userName, password);
   };
 
   if (loading || updating) {
     return <Loading />;
   }
-  if (user) {
+
+  if (token) {
     navigate(from, { replace: true });
   }
 

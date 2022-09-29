@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../shared/Button";
 import InputComponents from "../shared/InputComponents";
 import Layout from "../shared/Layout";
@@ -8,27 +8,77 @@ import Loading from "../shared/Loading";
 type CheckoutProps = {};
 
 const Checkout: React.FC<CheckoutProps> = () => {
+  const [load, setLoad] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
   const { isLoading, data: singleItem } = useQuery(["service", id], () =>
     fetch(
       `https://creative-agancy-server.vercel.app/api/v1/service/${id}`
     ).then((res) => res.json())
   );
 
-  if (isLoading) {
+  if (isLoading || load) {
     return <Loading />;
   }
 
   const formHandler = (e: any) => {
     e.preventDefault();
-    // const email = e.target.email.value;
-    // const firstName = e.target.firstName.value;
-    // const lastName = e.target.lastName.value;
-    // const country = e.target.country.value;
-    // const townCity = e.target.townCity.value;
-    // const stateCountry = e.target.stateCounty.value;
-    // const postCode = e.target.postcodeZip.value;
-    // const phoneNumber = e.target.phoneNumber.value;
+    const email = e.target.email.value;
+    const firstName = e.target.firstName.value;
+    const lastName = e.target.lastName.value;
+    const country = e.target.country.value;
+    const townCity = e.target.townCity.value;
+    const stateCountry = e.target.stateCounty.value;
+    const postCode = e.target.postcodeZip.value;
+    const phoneNumber = e.target.phoneNumber.value;
+    const image = e.target.upload.files[0];
+    const projectDetails = e.target.projectDetails.value;
+
+    const imgStoreKey = "56281d4753a15bb93e3a006088ea61a1";
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const url = `https://api.imgbb.com/1/upload?key=${imgStoreKey}`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        setLoad(true);
+        if (result.success) {
+          setLoad(false);
+          const img = result.data.url;
+          const fullDetails = {
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+            country: country,
+            townCity: townCity,
+            stateCountry: stateCountry,
+            postcode: postCode,
+            phoneNumber: phoneNumber,
+            images: img,
+            projectDetails: projectDetails,
+          };
+
+          // post method
+          const url = "https://creative-agancy-server.vercel.app/api/v1/order";
+          fetch(url, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(fullDetails),
+          })
+            .then((res) => res.json())
+            .then((payment) => {
+              console.log(payment);
+            });
+          // setLoad(false);
+          navigate(`/payment/${singleItem._id}`);
+        }
+      });
   };
   return (
     <Layout className="py-[150px] mx-[10px] bg-[#f5f8ff]">
@@ -45,7 +95,7 @@ const Checkout: React.FC<CheckoutProps> = () => {
                     htmlFor="name"
                     className="mb-2 block uppercase leading-7 text-sm text-gray-600"
                   >
-                    first Name *
+                    first Name <span className="text-secondary">*</span>
                   </label>
                   <InputComponents
                     type={"text"}
@@ -59,7 +109,7 @@ const Checkout: React.FC<CheckoutProps> = () => {
                     htmlFor="name"
                     className="mb-2 block uppercase leading-7 text-sm text-gray-600"
                   >
-                    LAST Name *
+                    LAST Name <span className="text-secondary">*</span>
                   </label>
                   <InputComponents
                     type={"text"}
@@ -76,7 +126,7 @@ const Checkout: React.FC<CheckoutProps> = () => {
                     htmlFor="name"
                     className="mb-2 block uppercase leading-7 text-sm text-gray-600"
                   >
-                    Country *
+                    Country <span className="text-secondary">*</span>
                   </label>
                   <InputComponents
                     type={"text"}
@@ -93,7 +143,7 @@ const Checkout: React.FC<CheckoutProps> = () => {
                     htmlFor="name"
                     className="mb-2 block uppercase leading-7 text-sm text-gray-600"
                   >
-                    TOWN / CITY *
+                    TOWN / CITY <span className="text-secondary">*</span>
                   </label>
                   <InputComponents
                     type={"text"}
@@ -107,7 +157,7 @@ const Checkout: React.FC<CheckoutProps> = () => {
                     htmlFor="name"
                     className="mb-2 block uppercase leading-7 text-sm text-gray-600"
                   >
-                    STATE / COUNTY *
+                    STATE / COUNTY <span className="text-secondary">*</span>
                   </label>
                   <InputComponents
                     type={"text"}
@@ -121,7 +171,7 @@ const Checkout: React.FC<CheckoutProps> = () => {
                     htmlFor="name"
                     className="mb-2 block uppercase leading-7 text-sm text-gray-600"
                   >
-                    POSTCODE / ZIP *
+                    POSTCODE / ZIP <span className="text-secondary">*</span>
                   </label>
                   <InputComponents
                     type={"number"}
@@ -138,7 +188,7 @@ const Checkout: React.FC<CheckoutProps> = () => {
                     htmlFor="name"
                     className="mb-2 block uppercase leading-7 text-sm text-gray-600"
                   >
-                    phone Number *
+                    phone Number <span className="text-secondary">*</span>
                   </label>
                   <InputComponents
                     type={"number"}
@@ -152,7 +202,7 @@ const Checkout: React.FC<CheckoutProps> = () => {
                     htmlFor="name"
                     className="mb-2 block uppercase leading-7 text-sm text-gray-600"
                   >
-                    email *
+                    email <span className="text-secondary">*</span>
                   </label>
                   <InputComponents
                     type={"email"}
@@ -163,10 +213,40 @@ const Checkout: React.FC<CheckoutProps> = () => {
                 </div>
               </div>
 
+              <div className="grid grid-cols-2 gap-10">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="mb-2 block uppercase leading-7 text-sm text-gray-600"
+                  >
+                    Upload your website document{" "}
+                    <span className="text-secondary">*</span>
+                  </label>
+                  <InputComponents
+                    type={"file"}
+                    placeholder={"upload"}
+                    name={"upload"}
+                    className="bg-[#f7f8fa] placeholder-black"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="mb-2 block uppercase leading-7 text-sm text-gray-600"
+                  >
+                    Details <span className="text-secondary">*</span>
+                  </label>
+                  <InputComponents
+                    type={"text"}
+                    placeholder={"Project details"}
+                    name={"projectDetails"}
+                    className="bg-[#f7f8fa]  placeholder-black"
+                  />
+                </div>
+              </div>
+
               <button type="submit" className="mt-[16px]">
-                <Link to={`/payment/${singleItem._id}`}>
-                  <Button>Confirm Order</Button>
-                </Link>
+                <Button>Confirm Order</Button>
               </button>
             </form>
           </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../Button";
 import InputComponents from "../InputComponents";
+import TextArea from "../TextArea";
 
 type FooterRightProps = {};
 
@@ -23,16 +24,9 @@ const FooterRight: React.FC<FooterRightProps> = () => {
         <InputComponents
           type={"text"}
           placeholder={"Your name / company’s name"}
-          name={"name"}
+          name={"textArea"}
         />
-        <textarea
-          className="focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent w-full block placeholder-[rgba(0,0,0,0.3)] p-[25px] font-light rounded-[4px] tracking-[0.396px] border-[1px] border-[rgba(0,0,0,0.9)]"
-          name="textArea"
-          placeholder="Your message"
-          id=""
-          cols={30}
-          rows={10}
-        ></textarea>
+        <TextArea type={"text"} placeholder={"Your message"} name={"message"} />
         <button type="submit" className="mt-[16px]">
           <Button>Send</Button>
         </button>

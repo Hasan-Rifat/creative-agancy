@@ -10,7 +10,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem }) => {
   const [cardError, setCardError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const [transactionId, setTransactionId] = useState("");
-  const { price } = singleItem;
+  const { price, _id } = singleItem;
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -57,13 +57,34 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem }) => {
           },
         },
       });
-    console.log(paymentIntent);
+
     if (intentError) {
       setCardError(error?.message || "");
     } else {
       setCardError("");
       setTransactionId(paymentIntent.id);
-      setSuccess("congrats! Your payment is completed");
+
+      // payment server request
+
+      const paymentData = {
+        paymentId: paymentIntent.id,
+        orderId: _id,
+      };
+
+      console.log(paymentData);
+
+      const url = `https://creative-agancy-server.vercel.app/api/v1/order/${_id}`;
+      fetch(url, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(paymentData),
+      })
+        .then((res) => res.json())
+        .then((payment) => {
+          setSuccess("congrats! Your payment is completed");
+        });
     }
   };
   return (

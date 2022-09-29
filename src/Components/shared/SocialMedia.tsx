@@ -1,6 +1,8 @@
 import React from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import useAdmin from "../../Hooks/useAdmin";
 import googleLogo from "../../images/logos/Google logo.png";
 // import facebookLogo from "../../images/logos/facebook logo.png";
 
@@ -9,6 +11,23 @@ type SocialMediaProps = {};
 const SocialMedia: React.FC<SocialMediaProps> = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   let errorElement: JSX.Element | string;
+
+  const [token] = useAdmin(user);
+
+  type LocationProps = {
+    state: {
+      from: Location;
+    };
+  };
+
+  const navigate = useNavigate();
+  const location = useLocation() as unknown as LocationProps;
+
+  let from = location.state?.from?.pathname || "/";
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   if (error) {
     errorElement = (
