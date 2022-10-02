@@ -25,7 +25,7 @@ const ServicesDetails = () => {
   }
 
   const navigateCheckout = (e: any) => {
-    const singleOrder = {
+    /* const singleOrder = {
       title: e.title,
       description: e.description,
       price: e.price,
@@ -44,7 +44,7 @@ const ServicesDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-      });
+      }); */
     navigate(`/checkout/${id}`);
   };
 
