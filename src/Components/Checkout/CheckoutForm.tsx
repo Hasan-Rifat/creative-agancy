@@ -1,16 +1,19 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 type CheckoutFormProps = { singleItem?: any; id: any };
 
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem, id }) => {
+  const [user, loading] = useAuthState(auth);
   const stripe = useStripe();
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState("");
   const [cardError, setCardError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const [transactionId, setTransactionId] = useState("");
-  const { price, _id } = singleItem;
+  const { price, _id, title, description, image } = singleItem;
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -69,6 +72,11 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem, id }) => {
       const paymentData = {
         paymentId: paymentIntent.id,
         orderId: _id,
+        email: user?.email,
+        title: title,
+        image: image,
+        price: price,
+        description: description,
       };
 
       console.log(paymentData);
