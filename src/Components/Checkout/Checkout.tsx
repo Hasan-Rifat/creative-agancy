@@ -90,7 +90,7 @@ const Checkout: React.FC<CheckoutProps> = () => {
       <div className="grid grid-cols-3 gap-5">
         <div className="bg-white p-[40px] col-span-2">
           <h2 className="pb-[20px] text-center text-[36px] font-bold text-primary">
-            Billing details
+            Billing detail
           </h2>
           <div>
             <form onSubmit={formHandler}>
