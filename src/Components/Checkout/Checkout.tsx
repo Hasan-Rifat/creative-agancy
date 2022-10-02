@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
+import auth from "../../firebase.init";
 import Button from "../shared/Button";
 import InputComponents from "../shared/InputComponents";
 import Layout from "../shared/Layout";
@@ -8,16 +10,17 @@ import Loading from "../shared/Loading";
 type CheckoutProps = {};
 
 const Checkout: React.FC<CheckoutProps> = () => {
+  const [user, loading] = useAuthState(auth);
   const [load, setLoad] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
   const { isLoading, data: singleItem } = useQuery(["service", id], () =>
     fetch(
-      `https://creative-agancy-server.vercel.app/api/v1/service/${id}`
+      `https://creative-agancy-server.vercel.app/api/v1/services/${id}`
     ).then((res) => res.json())
   );
 
-  if (isLoading || load) {
+  if (isLoading || load || loading) {
     return <Loading />;
   }
 
@@ -74,7 +77,9 @@ const Checkout: React.FC<CheckoutProps> = () => {
             .then((res) => res.json())
             .then((payment) => {
               console.log(payment);
+              e.reset();
             });
+
           // setLoad(false);
           navigate(`/payment/${singleItem._id}`);
         }
@@ -208,6 +213,8 @@ const Checkout: React.FC<CheckoutProps> = () => {
                     type={"email"}
                     placeholder={"email"}
                     name={"email"}
+                    defaultValue={user?.email}
+                    disabled={true}
                     className="bg-[#f7f8fa] placeholder-black"
                   />
                 </div>
@@ -255,7 +262,7 @@ const Checkout: React.FC<CheckoutProps> = () => {
           <div className="mb-5">
             <img
               className="w-[50%] rounded mx-auto"
-              src={singleItem?.logo}
+              src={singleItem?.image}
               alt="commerce"
             />
           </div>

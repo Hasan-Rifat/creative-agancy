@@ -5,6 +5,8 @@ type InputComponentsProps = {
   placeholder: string;
   name: string;
   className?: string;
+  defaultValue?: any;
+  disabled?: boolean;
 };
 
 const InputComponents: React.FC<InputComponentsProps> = ({
@@ -12,6 +14,8 @@ const InputComponents: React.FC<InputComponentsProps> = ({
   placeholder,
   name,
   className,
+  defaultValue,
+  disabled,
 }: InputComponentsProps) => {
   return (
     <input
@@ -23,6 +27,8 @@ const InputComponents: React.FC<InputComponentsProps> = ({
       type={type}
       placeholder={placeholder}
       name={name}
+      defaultValue={defaultValue}
+      disabled={disabled}
       required
     />
   );

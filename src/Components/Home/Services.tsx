@@ -12,7 +12,7 @@ const Services: React.FC<ServicesProps> = () => {
     _id: number;
     title: string;
     description: string;
-    logo: string;
+    image: string;
   };
 
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Services: React.FC<ServicesProps> = () => {
           Provide awesome <span className="text-secondary">services</span>
         </h2>
         <div className="grid xss:grid-cols-1 md:gap-[10px]  xl:gap-[30px] md:grid-cols-3">
-          {service.map(({ _id, title, description, logo }: ser) => (
+          {service.map(({ _id, title, description, image }: ser) => (
             <div
               onClick={() => navigateServiceDetails(_id)}
               key={_id}
@@ -40,7 +40,7 @@ const Services: React.FC<ServicesProps> = () => {
               }`}
             >
               <div className="pb-[25px]">
-                <img className="w-[74px] h-[74px] mx-auto" src={logo} alt="" />
+                <img className="w-[74px] h-[74px] mx-auto" src={image} alt="" />
               </div>
               <h2 className="sm:text-[16px] lg:text-[20px] leading-[16px] tracking-[0.4 px] font-semibold text-primary pb-[18px]">
                 {title}

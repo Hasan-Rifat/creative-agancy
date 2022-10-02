@@ -15,13 +15,14 @@ const Payment: React.FC<PaymentProps> = () => {
   const { id } = useParams();
 
   const { isLoading, data: singleItem } = useQuery(["service", id], () =>
-    fetch(
-      `https://creative-agancy-server.vercel.app/api/v1/service/${id}`
-    ).then((res) => res.json())
+    fetch(`http://localhost:5000/api/v1/services/${id}`).then((res) =>
+      res.json()
+    )
   );
   if (isLoading) {
     return <Loading />;
   }
+  console.log(singleItem);
 
   return (
     <Layout className="py-[150px] px-[20px] bg-[#f5f8ff]">
@@ -30,7 +31,7 @@ const Payment: React.FC<PaymentProps> = () => {
           <div className="mb-5">
             <img
               className="w-[50%] rounded mx-auto"
-              src={singleItem?.logo}
+              src={singleItem?.image}
               alt="commerce"
             />
           </div>
@@ -66,7 +67,7 @@ const Payment: React.FC<PaymentProps> = () => {
               </span>
             </div>
             <Elements stripe={stripePromise}>
-              <CheckoutForm singleItem={singleItem} />
+              <CheckoutForm singleItem={singleItem} id={id} />
             </Elements>
           </div>
         </div>

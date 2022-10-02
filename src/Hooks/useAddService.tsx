@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
-// type useServicesProps = { useServices: any[] | JSX.Element };
-
-const useServices: () => never[][] = () => {
+const useAddService: () => never[][] = () => {
   const [service, setService] = useState<never[]>([]);
   useEffect(() => {
     fetch("https://creative-agancy-server.vercel.app/api/v1/services")
@@ -12,4 +10,5 @@ const useServices: () => never[][] = () => {
 
   return [service];
 };
-export default useServices;
+
+export default useAddService;

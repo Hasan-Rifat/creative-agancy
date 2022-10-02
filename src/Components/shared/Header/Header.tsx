@@ -39,18 +39,18 @@ const Header: React.FC = () => {
       </li>
       {user ? (
         <div className="relative flex justify-center items-center ">
-          <div className=" flex gap-2 items-center  online ">
-            {user.displayName && (
+          <div
+            onClick={() => setDashboard(!dashboard)}
+            className="cursor-pointer flex gap-2 items-center  online "
+          >
+            {user?.displayName && (
               <div className=" rounded-full  text-red-600 bg-primary">
                 <h2 className="font-bold text-[18px] text-center px-[15px]">
                   {user?.displayName}
                 </h2>
               </div>
             )}
-            <CgChevronDownO
-              onClick={() => setDashboard(!dashboard)}
-              className="cursor-pointer "
-            />
+            <CgChevronDownO className="cursor-pointer " />
           </div>
           <div
             className={`${

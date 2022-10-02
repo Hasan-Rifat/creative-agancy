@@ -1,9 +1,9 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 
-type CheckoutFormProps = { singleItem?: any };
+type CheckoutFormProps = { singleItem?: any; id: any };
 
-const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem }) => {
+const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem, id }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState("");
@@ -73,9 +73,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem }) => {
 
       console.log(paymentData);
 
-      const url = `https://creative-agancy-server.vercel.app/api/v1/order/${_id}`;
+      const url = `https://creative-agancy-server.vercel.app/api/v1/order/${id}`;
       fetch(url, {
-        method: "PATCH",
+        method: "PUT",
         headers: {
           "content-type": "application/json",
         },
@@ -83,7 +83,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem }) => {
       })
         .then((res) => res.json())
         .then((payment) => {
-          setSuccess("congrats! Your payment is completed");
+          setSuccess(`${payment} congrats! Your payment is completed`);
         });
     }
   };

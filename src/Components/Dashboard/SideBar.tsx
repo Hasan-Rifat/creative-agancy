@@ -1,41 +1,71 @@
 import React from "react";
-import DashboardActiveLink from "../shared/ActiveLink/DashboardActiveLink";
-import logo from "../../images/logos/logo.png";
 import { Link } from "react-router-dom";
+import logo from "../../images/logos/logo.png";
+import DashboardActiveLink from "../shared/ActiveLink/DashboardActiveLink";
 
+import { signOut } from "firebase/auth";
+import { AiFillDashboard } from "react-icons/ai";
+import { FaUserFriends } from "react-icons/fa";
+import { MdAddToPhotos } from "react-icons/md";
+import { RiLogoutBoxLine } from "react-icons/ri";
+import auth from "../../firebase.init";
+import review from "../../images/dashboard-icon/Add A Review.svg";
 import serviceList from "../../images/dashboard-icon/Service list.svg";
 import order from "../../images/dashboard-icon/shopping-cart-outline 1order.svg";
-import review from "../../images/dashboard-icon/Add A Review.svg";
-import { AiFillDashboard } from "react-icons/ai";
 
 type SideBarProps = {};
 
 const SideBar: React.FC<SideBarProps> = () => {
+  const logout = () => {
+    signOut(auth);
+  };
   const SideBarMenu = (
     <>
-      <li className="w-full block  ">
+      <li className="w-full block my-[15px] ">
         <DashboardActiveLink to={"/dashboard"}>
           <AiFillDashboard className="text-[30px]" />
-          <span>Dashboard</span>
+          <span className="text-[20px]">Dashboard</span>
         </DashboardActiveLink>
       </li>
-      <li className="w-full block  ">
+      <li className="w-full block my-[15px] ">
         <DashboardActiveLink to={"/dashboard/services-list"}>
           <img className="w-[30px]" src={serviceList} alt="" />
-          <span>Service List</span>
+          <span className="text-[20px]">Service List</span>
         </DashboardActiveLink>
       </li>
-      <li className="w-full block  ">
+      <li className="w-full block my-[15px] relative">
+        <DashboardActiveLink to={"/dashboard/add-services"}>
+          <MdAddToPhotos className="text-[30px]" />
+          <span className="text-[20px]">Add Service</span>
+        </DashboardActiveLink>
+      </li>
+      <li className="w-full block my-[15px] ">
         <DashboardActiveLink to={"/dashboard/order"}>
           <img className="w-[30px]" src={order} alt="order-icon" />
-          <span>Order</span>
+          <span className="text-[20px]">All Order</span>
         </DashboardActiveLink>
       </li>
-      <li className="w-full block  ">
+      <li className="w-full block my-[15px] ">
         <DashboardActiveLink to={"/dashboard/review"}>
           <img className="w-[30px]" src={review} alt="" />
-          <span>Review</span>
+          <span className="text-[20px]">Review</span>
         </DashboardActiveLink>
+      </li>
+      <li className="w-full block my-[15px] relative">
+        <DashboardActiveLink to={"/dashboard/all-user"}>
+          <FaUserFriends className="text-[30px]" />
+          <span className="text-[20px]">All User</span>
+        </DashboardActiveLink>
+      </li>
+      <li className="w-full block my-[15px] " onClick={logout}>
+        <button
+          className=" bg-gradient-to-r from-[#FF0839]   border-[#D6002A]   w-full  px-[40px]  py-[17px] border-l-[8px]  border-transparent flex items-center gap-2
+
+"
+        >
+          <RiLogoutBoxLine className="text-[30px]" />
+          <span className="text-[20px]">Log Out</span>
+        </button>
       </li>
     </>
   );

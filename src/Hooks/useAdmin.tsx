@@ -4,7 +4,8 @@ const useAdmin = (user: any) => {
   const [token, setToken] = useState("");
   useEffect(() => {
     const email = user?.user?.email;
-    const currentUser = { email: email };
+    const userName = user?.displayName;
+    const currentUser = { email: email, userName: userName };
 
     if (email) {
       fetch(`https://creative-agancy-server.vercel.app/api/v1/users/${email}`, {

@@ -1,14 +1,16 @@
-import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 import Button from "../shared/Button";
 import Layout from "../shared/Layout";
 import Loading from "../shared/Loading";
 
 type ServicesDetailsProps = {};
 
-const ServicesDetails: React.FC<ServicesDetailsProps> = () => {
+const ServicesDetails = () => {
+  const [user, loading] = useAuthState(auth);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -18,11 +20,31 @@ const ServicesDetails: React.FC<ServicesDetailsProps> = () => {
     ).then((res) => res.json())
   );
 
-  if (isLoading) {
+  if (isLoading || loading) {
     return <Loading />;
   }
 
-  const navigateCheckout = (id: number) => {
+  const navigateCheckout = (e: any) => {
+    const singleOrder = {
+      title: e.title,
+      description: e.description,
+      price: e.price,
+      image: e.image,
+      email: user?.email,
+      orderId: e._id,
+    };
+
+    fetch("http://localhost:5000/api/v1/order", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(singleOrder),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
     navigate(`/checkout/${id}`);
   };
 
@@ -33,7 +55,7 @@ const ServicesDetails: React.FC<ServicesDetailsProps> = () => {
           <div className="xss:col-span-2 md:col-span-1 ">
             <img
               className=" rounded w-full"
-              src={singleItem?.logo}
+              src={singleItem?.image}
               alt="commerce"
             />
           </div>
@@ -41,34 +63,16 @@ const ServicesDetails: React.FC<ServicesDetailsProps> = () => {
             {/* <h2 className="text-sm title-font text-gray-500 tracking-widest">
                {id}
              </h2> */}
-            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+            <h1 className="text-gray-900 text-3xl title-font font-medium mb-3">
               {singleItem?.title}
             </h1>
-            <div className="flex mb-4">
-              <span className="flex items-center">
-                <svg
-                  fill="currentColor"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-4 h-4 text-indigo-500"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                </svg>
 
-                <span className="text-gray-600 ml-3">
-                  {singleItem.rating} Reviews
-                </span>
-              </span>
-            </div>
             <p className="leading-relaxed">{singleItem?.description}</p>
             <div className="flex  mt-6  pb-5  mb-5">
               <span className="title-font font-medium text-2xl text-secondary">
                 $<span className="text-primary">{singleItem.price}</span>
               </span>
-              <button onClick={() => navigateCheckout(singleItem._id)}>
+              <button onClick={() => navigateCheckout(singleItem)}>
                 <Button className="flex ml-[40px] border-0 py-2 px-6 focus:outline-none rounded">
                   Place Order
                 </Button>
