@@ -81,9 +81,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem, id }) => {
 
       console.log(paymentData);
 
-      const url = `https://creative-agancy-server.vercel.app/api/v1/order/${id}`;
+      const url = `https://creative-agancy-server.vercel.app/api/v1/order`;
       fetch(url, {
-        method: "PUT",
+        method: "POST",
         headers: {
           "content-type": "application/json",
         },
