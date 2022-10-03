@@ -41,6 +41,12 @@ const SideBar: () => JSX.Element = () => {
           <span className="text-[20px]">My Order</span>
         </DashboardActiveLink>
       </li>
+      <li className="w-full block my-[15px] ">
+        <DashboardActiveLink to={"/dashboard/add-a-review"}>
+          <MdAddToPhotos className="text-[30px]" />
+          <span className="text-[20px]">Add A Review</span>
+        </DashboardActiveLink>
+      </li>
 
       {admin && (
         <>
@@ -50,12 +56,7 @@ const SideBar: () => JSX.Element = () => {
               <span className="text-[20px]">Review</span>
             </DashboardActiveLink>
           </li>
-          <li className="w-full block my-[15px] ">
-            <DashboardActiveLink to={"/dashboard/add-a-review"}>
-              <MdAddToPhotos className="text-[30px]" />
-              <span className="text-[20px]">Add A Review</span>
-            </DashboardActiveLink>
-          </li>
+
           <li className="w-full block my-[15px] ">
             <DashboardActiveLink to={"/dashboard/services-list"}>
               <img className="w-[30px]" src={serviceList} alt="" />
