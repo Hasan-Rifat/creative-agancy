@@ -38,6 +38,7 @@ const ClientReview: React.FC<ClientReviewProps> = () => {
         </div>
         <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-[30px]">
           {clientReview
+            .slice(0, 3)
             .reverse()
             .map((review: review) => (
               <div
