@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import Button from "../../shared/Button";
 import DashboardLayout from "../../shared/DashboardLayout";
@@ -63,9 +64,9 @@ const AddServices: React.FC<AddServicesProps> = () => {
           })
             .then((res) => res.json())
             .then((payment) => {
-              window.location.reload();
+              toast.success("successfully Services added");
               e.reset();
-              console.log(payment);
+              // window.location.reload();
             });
         }
       });

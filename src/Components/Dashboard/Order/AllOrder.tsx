@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import DashboardLayout from "../../shared/DashboardLayout";
 import Loading from "../../shared/Loading";
 import DashboardTitle from "../DashboardTitle";
@@ -30,7 +31,7 @@ const Order = () => {
     })
       .then((res) => res.json())
       .then((deleted) => {
-        console.log(`${deleted} `);
+        toast.error("successfully deleted order ");
         refetch();
       });
   };

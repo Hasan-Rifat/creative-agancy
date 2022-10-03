@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import Button from "../../shared/Button";
 import InputComponents from "../../shared/InputComponents";
@@ -63,9 +64,8 @@ const Modal: React.FC<ModalProps> = ({ setOpen, open, getData }) => {
           })
             .then((res) => res.json())
             .then((payment) => {
+              toast.success("update Service successfully");
               window.location.reload();
-              e.reset();
-              console.log(payment);
             });
         }
       });

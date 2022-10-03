@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import Button from "../Button";
 import InputComponents from "../InputComponents";
 import TextArea from "../TextArea";
@@ -10,6 +11,7 @@ const formHandler = (e: { target: any; preventDefault: () => void }) => {
   const name = e.target.name.value;
   const email = e.target.email.value;
   const textArea = e.target.textArea.value;
+  toast.success("sending successfully");
 };
 
 const FooterRight: React.FC<FooterRightProps> = () => {

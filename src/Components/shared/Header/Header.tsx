@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { CgChevronDownO } from "react-icons/cg";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import logo from "../../../images/logos/logo.png";
 import ActiveLink from "../ActiveLink/ActiveLink";
@@ -17,6 +18,7 @@ const Header: React.FC = () => {
 
   const logout = () => {
     signOut(auth);
+    toast.success("Logout successfully");
   };
 
   if (loading) {

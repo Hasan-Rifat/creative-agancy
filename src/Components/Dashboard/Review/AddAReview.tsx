@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import Button from "../../shared/Button";
 import DashboardLayout from "../../shared/DashboardLayout";
@@ -51,7 +52,7 @@ const AddAReview: React.FC<AddAReviewProps> = () => {
           })
             .then((res) => res.json())
             .then((review) => {
-              console.log(review);
+              toast.success("successfully Review added");
             });
         }
       });

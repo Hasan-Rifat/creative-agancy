@@ -9,6 +9,7 @@ import { FaUserFriends } from "react-icons/fa";
 import { MdAddToPhotos, MdReorder } from "react-icons/md";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { VscCommentDiscussion } from "react-icons/vsc";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import useAdminToken from "../../Hooks/useAdminToken";
 import serviceList from "../../images/dashboard-icon/Service list.svg";
@@ -17,13 +18,15 @@ import Loading from "../shared/Loading";
 
 const SideBar: () => JSX.Element = () => {
   const [user, loading] = useAuthState(auth);
-  const [admin, adminLoading] = useAdminToken(user);
-  if (loading || adminLoading) {
+  const [admin] = useAdminToken(user);
+
+  if (loading) {
     return <Loading />;
   }
 
   const logout = () => {
     signOut(auth);
+    toast.success("Logout successfully");
   };
 
   const SideBarMenu = (

@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { toast } from "react-toastify";
 import DashboardLayout from "../../shared/DashboardLayout";
 import Loading from "../../shared/Loading";
 import DashboardTitle from "../DashboardTitle";
@@ -28,7 +29,7 @@ const AllUser: React.FC<AllUserProps> = () => {
       .then((res) => res.json())
       .then((admin) => {
         refetch();
-        console.log(admin);
+        toast.success("successfully create a admin ");
       });
   };
   const deleteUser = (email: string) => {
@@ -41,7 +42,7 @@ const AllUser: React.FC<AllUserProps> = () => {
       .then((res) => res.json())
       .then((admin) => {
         refetch();
-        console.log(admin);
+        toast.error("successfully deleted user ");
       });
   };
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin2Fill } from "react-icons/ri";
+import { toast } from "react-toastify";
 import useServices from "../../../Hooks/useServices";
 import DashboardLayout from "../../shared/DashboardLayout";
 import Loading from "../../shared/Loading";
@@ -34,13 +35,12 @@ const ServicesList: React.FC<ServicesListProps> = () => {
     return <Loading />;
   }
 
-  const updateService = (id: number) => {};
   const deleteService = (id: number) => {
     const url = `https://creative-agancy-server.vercel.app/api/v1/services/${id}`;
     fetch(url, { method: "DELETE" })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        toast.error("deleteService successfully");
         window.location.reload();
       });
   };
@@ -67,13 +67,13 @@ const ServicesList: React.FC<ServicesListProps> = () => {
                   <label htmlFor="edit-modal" onClick={() => setOpen(!open)}>
                     <FaEdit
                       onClick={() => fullData(item)}
-                      className="text-[24px] cursor-pointer"
+                      className="text-[24px] cursor-pointer text-[#26ab70]"
                     />
                   </label>
                   <p>
                     <RiDeleteBin2Fill
                       onClick={() => deleteService(item._id)}
-                      className="text-[24px] cursor-pointer"
+                      className="text-[24px] cursor-pointer text-secondary"
                     />
                   </p>
                 </div>

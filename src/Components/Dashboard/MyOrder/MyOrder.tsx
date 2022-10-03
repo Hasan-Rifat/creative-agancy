@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import DashboardLayout from "../../shared/DashboardLayout";
 import DashboardTitle from "../DashboardTitle";
@@ -34,7 +35,7 @@ const MyOrder = () => {
     })
       .then((res) => res.json())
       .then((deleted) => {
-        console.log(`${deleted} `);
+        toast.error("deleted");
         refetch();
       });
   };

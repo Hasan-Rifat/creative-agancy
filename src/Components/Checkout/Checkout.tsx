@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import Button from "../shared/Button";
 import InputComponents from "../shared/InputComponents";
@@ -77,12 +78,12 @@ const Checkout: React.FC<CheckoutProps> = () => {
           })
             .then((res) => res.json())
             .then((payment) => {
-              console.log(payment);
               e.reset();
             });
+          toast.success("successfully submit");
+          navigate(`/payment/${singleItem._id}`);
 
           // setLoad(false);
-          navigate(`/payment/${singleItem._id}`);
         }
       });
   };

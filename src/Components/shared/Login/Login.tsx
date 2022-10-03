@@ -8,6 +8,7 @@ import Button from "../Button";
 import InputComponents from "../InputComponents";
 import Loading from "../Loading";
 import SocialMedia from "../SocialMedia";
+import { toast } from "react-toastify";
 
 type LoginProps = {};
 
@@ -32,6 +33,7 @@ const Login: React.FC<LoginProps> = () => {
     const password = e.target.password.value;
     console.log(typeof e.target.email);
     signInWithEmailAndPassword(email, password);
+    toast.success("Login successfully");
   };
 
   if (loading) {

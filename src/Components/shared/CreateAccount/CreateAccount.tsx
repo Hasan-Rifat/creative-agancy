@@ -4,6 +4,7 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import useAdmin from "../../../Hooks/useAdmin";
 import Button from "../Button";
@@ -42,6 +43,7 @@ const CreateAccount: React.FC<CreateAccountProps> = () => {
 
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: userName });
+    toast.success(" user Created successfully");
   };
 
   if (loading || updating) {

@@ -1,6 +1,8 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 
 type CheckoutFormProps = { singleItem?: any; id: any };
@@ -14,6 +16,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem, id }) => {
   const [success, setSuccess] = useState<string>("");
   const [transactionId, setTransactionId] = useState("");
   const { price, _id, title, description, image } = singleItem;
+  const paid = true;
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -77,9 +81,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem, id }) => {
         image: image,
         price: price,
         description: description,
+        paid: paid,
       };
-
-      console.log(paymentData);
 
       const url = `https://creative-agancy-server.vercel.app/api/v1/order`;
       fetch(url, {
@@ -91,7 +94,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ singleItem, id }) => {
       })
         .then((res) => res.json())
         .then((payment) => {
-          setSuccess(`${payment} congrats! Your payment is completed`);
+          // setSuccess(`${payment} congrats! Your payment is completed`);
+          toast.success(`${payment} congrats! Your payment is completed`);
+          navigate("/");
         });
     }
   };
