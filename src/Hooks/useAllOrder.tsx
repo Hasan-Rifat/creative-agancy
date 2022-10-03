@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useAllOrder = () => {
   const [allOrder, setAllOrder] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/order")
+    fetch("https://creative-agancy-server.vercel.app/api/v1/order")
       .then((res) => res.json())
       .then((data) => setAllOrder(data));
   }, []);

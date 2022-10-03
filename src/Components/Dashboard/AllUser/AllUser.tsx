@@ -20,7 +20,7 @@ const AllUser: React.FC<AllUserProps> = () => {
 
   const makeAdmin = (email: string) => {
     console.log(email);
-    const url = `http://localhost:5000/api/v1/admin/${email}`;
+    const url = `https://creative-agancy-server.vercel.app/api/v1/admin/${email}`;
 
     fetch(url, {
       method: "PUT",
@@ -33,7 +33,7 @@ const AllUser: React.FC<AllUserProps> = () => {
   };
   const deleteUser = (email: string) => {
     console.log(email);
-    const url = `http://localhost:5000/api/v1/admin/${email}`;
+    const url = `https://creative-agancy-server.vercel.app/api/v1/admin/${email}`;
 
     fetch(url, {
       method: "DELETE",

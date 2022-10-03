@@ -66,7 +66,8 @@ const Checkout: React.FC<CheckoutProps> = () => {
           };
 
           // post method
-          const url = "http://localhost:5000/api/v1/checkout";
+          const url =
+            "https://creative-agancy-server.vercel.app/api/v1/checkout";
           fetch(url, {
             method: "POST",
             headers: {

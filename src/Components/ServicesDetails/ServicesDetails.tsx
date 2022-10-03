@@ -34,7 +34,7 @@ const ServicesDetails = () => {
     //   orderId: e._id,
     // };
 
-    // fetch("http://localhost:5000/api/v1/order", {
+    // fetch("https://creative-agancy-server.vercel.app/api/v1/order", {
     //   method: "POST",
     //   headers: {
     //     "content-type": "application/json",

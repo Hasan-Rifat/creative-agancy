@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 import DashboardLayout from "../../shared/DashboardLayout";
 import Loading from "../../shared/Loading";
 import DashboardTitle from "../DashboardTitle";
@@ -12,7 +11,9 @@ const Order = () => {
     data: allOrder,
     refetch,
   } = useQuery(["order"], () =>
-    fetch(`http://localhost:5000/api/v1/order`).then((res) => res.json())
+    fetch(`https://creative-agancy-server.vercel.app/api/v1/order`).then(
+      (res) => res.json()
+    )
   );
 
   if (isLoading) {

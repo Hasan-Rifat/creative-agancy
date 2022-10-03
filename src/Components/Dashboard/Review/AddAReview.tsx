@@ -41,7 +41,7 @@ const AddAReview: React.FC<AddAReviewProps> = () => {
           };
 
           // post method
-          const url = "http://localhost:5000/api/v1/review";
+          const url = "https://creative-agancy-server.vercel.app/api/v1/review";
           fetch(url, {
             method: "POST",
             headers: {

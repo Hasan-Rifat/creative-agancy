@@ -7,7 +7,7 @@ const useAdminToken = (user: any) => {
     const email = user?.email;
 
     if (email) {
-      fetch(`http://localhost:5000/api/v1/admin/${email}`, {
+      fetch(`https://creative-agancy-server.vercel.app/api/v1/admin/${email}`, {
         method: "GET",
         headers: {
           "content-type": "application/json",

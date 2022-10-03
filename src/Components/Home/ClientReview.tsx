@@ -20,7 +20,9 @@ const ClientReview: React.FC<ClientReviewProps> = () => {
     data: clientReview,
     refetch,
   } = useQuery(["review"], () =>
-    fetch(`http://localhost:5000/api/v1/review`).then((res) => res.json())
+    fetch(`https://creative-agancy-server.vercel.app/api/v1/review`).then(
+      (res) => res.json()
+    )
   );
 
   if (isLoading) {

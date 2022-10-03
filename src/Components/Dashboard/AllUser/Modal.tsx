@@ -53,7 +53,7 @@ const Modal: React.FC<ModalProps> = ({ setOpen, open, getData }) => {
           };
 
           // post method
-          const url = `http://localhost:5000/api/v1/services/${getData._id}`;
+          const url = `https://creative-agancy-server.vercel.app/api/v1/services/${getData._id}`;
           fetch(url, {
             method: "PUT",
             headers: {

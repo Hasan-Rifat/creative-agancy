@@ -36,7 +36,7 @@ const ServicesList: React.FC<ServicesListProps> = () => {
 
   const updateService = (id: number) => {};
   const deleteService = (id: number) => {
-    const url = `http://localhost:5000/api/v1/services/${id}`;
+    const url = `https://creative-agancy-server.vercel.app/api/v1/services/${id}`;
     fetch(url, { method: "DELETE" })
       .then((res) => res.json())
       .then((data) => {

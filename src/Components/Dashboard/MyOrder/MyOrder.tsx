@@ -13,9 +13,9 @@ const MyOrder = () => {
     data: singleOrder,
     refetch,
   } = useQuery(["myOrder"], () =>
-    fetch(`http://localhost:5000/api/v1/order/${user?.email}`).then((res) =>
-      res.json()
-    )
+    fetch(
+      `https://creative-agancy-server.vercel.app/api/v1/order/${user?.email}`
+    ).then((res) => res.json())
   );
 
   /*  if (isLoading) {
