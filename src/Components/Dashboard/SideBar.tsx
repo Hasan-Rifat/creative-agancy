@@ -8,6 +8,7 @@ import { AiFillDashboard } from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
 import { MdAddToPhotos, MdReorder } from "react-icons/md";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import { VscCommentDiscussion } from "react-icons/vsc";
 import auth from "../../firebase.init";
 import useAdminToken from "../../Hooks/useAdminToken";
 import serviceList from "../../images/dashboard-icon/Service list.svg";
@@ -45,7 +46,7 @@ const SideBar: () => JSX.Element = () => {
         <>
           <li className="w-full block my-[15px] ">
             <DashboardActiveLink to={"/dashboard/review"}>
-              <img className="w-[30px]" src={review} alt="" />
+              <VscCommentDiscussion className="text-[30px]" />
               <span className="text-[20px]">Review</span>
             </DashboardActiveLink>
           </li>
