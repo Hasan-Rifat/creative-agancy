@@ -7,7 +7,6 @@ import DashboardTitle from "../DashboardTitle";
 type OrderProps = {};
 
 const Order = () => {
-  const navigate = useNavigate();
   const {
     isLoading,
     data: allOrder,
@@ -88,40 +87,30 @@ const Order = () => {
                           />
                         </div>
                         <div>
-                          <p>
+                          <p className="font-semibold">
+                            <span className="text-secondary">$</span>
+                            {}
                             <span>{price}</span>
                           </p>
                         </div>
                         <div>
                           <p>
-                            <span>{_id}</span>
+                            <span>{_id.slice(17)}</span>
                           </p>
                         </div>
-                        {paid === true ? (
-                          <div>
-                            <h2 className="text-green-500 font-semibold">
-                              paid
-                            </h2>
-                            <button
-                              className="font-bold text-[20px]"
-                              onClick={() => deletedOrder(_id)}
-                            >
-                              x
-                            </button>
-                          </div>
-                        ) : (
-                          <>
-                            <span className="text-secondary">
-                              payment failed!
-                            </span>
-                            <button
-                              className="font-bold text-[20px]"
-                              onClick={() => deletedOrder(_id)}
-                            >
-                              x
-                            </button>
-                          </>
-                        )}
+
+                        <div>
+                          <h2 className="text-green-500 font-semibold">paid</h2>
+                        </div>
+
+                        <>
+                          <button
+                            className="font-bold text-[20px]"
+                            onClick={() => deletedOrder(_id)}
+                          >
+                            x
+                          </button>
+                        </>
                       </div>
                     </div>
                   )

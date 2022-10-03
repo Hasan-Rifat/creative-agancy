@@ -16,7 +16,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
   const [singleR, SetSingleR] = useState<t[]>([
     {
       id: 0,
-      img: img1,
+      image: img1,
       name: "FATIMA ASRAFY",
       titles: "COO, AMERIMAR ENTERPRISES, INC.",
       description:
@@ -25,7 +25,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
   ]);
   type testimonials = {
     id: number;
-    img: string;
+    image: string;
     description: string;
     titles: string;
     name: string;
@@ -33,7 +33,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
 
   type t = {
     id: number;
-    img: string;
+    image: string;
     description: string;
     titles: string;
     name: string;
@@ -42,7 +42,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
   const testimonial: testimonials = [
     {
       id: 0,
-      img: img1,
+      image: img1,
       name: "FATIMA ASRAFY",
       titles: "COO, AMERIMAR ENTERPRISES, INC.",
       description:
@@ -50,7 +50,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
     },
     {
       id: 1,
-      img: img2,
+      image: img2,
       name: "JOHN NIRA",
       titles: "COO, AMERIMAR ENTERPRISES, INC.",
       description:
@@ -58,7 +58,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
     },
     {
       id: 2,
-      img: img3,
+      image: img3,
       name: "JONE JANE",
       titles: " COO, AMERIMAR ENTERPRISES, INC.",
       description:
@@ -66,7 +66,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
     },
     {
       id: 3,
-      img: img4,
+      image: img4,
       name: "JANEN ASRAFY ",
       titles: " COO, AMERIMAR ENTERPRISES, INC.",
       description:
@@ -74,7 +74,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
     },
     {
       id: 4,
-      img: img5,
+      image: img5,
       name: "FATIMA ASRAFY",
       titles: " COO, AMERIMAR ENTERPRISES, INC.",
       description:
@@ -82,7 +82,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
     },
     {
       id: 5,
-      img: img6,
+      image: img6,
       name: "IRIN ASRAFY",
       titles: " COO, AMERIMAR ENTERPRISES, INC.",
       description:
@@ -90,7 +90,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
     },
     {
       id: 6,
-      img: img7,
+      image: img7,
       name: "SHIPA",
       titles: " COO, AMERIMAR ENTERPRISES, INC.",
       description:
@@ -98,7 +98,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
     },
     {
       id: 7,
-      img: img8,
+      image: img8,
       name: "RUNA AFRIN",
       titles: " COO, AMERIMAR ENTERPRISES, INC.",
       description:
@@ -142,7 +142,7 @@ const Testimonial: React.FC<TestimonialProps> = () => {
               <div onClick={() => testimonialHandler(t.id)} key={t.id}>
                 <img
                   className="rounded-[5px] drop-shadow-2xl"
-                  src={t.img}
+                  src={t.image}
                   alt=""
                 />
               </div>

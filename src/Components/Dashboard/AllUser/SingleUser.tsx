@@ -21,7 +21,9 @@ const SingleUser: React.FC<SingleUserProps> = ({
           <MdEmail className="text-[20px] text-secondary" />
           <span className="ml-1">
             Email :{" "}
-            {person.email === "mohammudrifat019@gmail.com" && "admin@gmail.com"}
+            {person.email === "mohammudrifat019@gmail.com"
+              ? "admin@gmail.com"
+              : person.email}
           </span>
         </div>
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useAdmin = (user: any) => {
+const useToken = (user: any) => {
   const [token, setToken] = useState("");
   useEffect(() => {
     const email = user?.user?.email;
@@ -25,4 +25,4 @@ const useAdmin = (user: any) => {
   }, [user]);
   return [token];
 };
-export default useAdmin;
+export default useToken;

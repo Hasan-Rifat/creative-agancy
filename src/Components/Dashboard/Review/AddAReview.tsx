@@ -1,31 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import Button from "../../shared/Button";
 import DashboardLayout from "../../shared/DashboardLayout";
 import InputComponents from "../../shared/InputComponents";
-import Loading from "../../shared/Loading";
 import TextArea from "../../shared/TextArea";
 import DashboardTitle from "../DashboardTitle";
 
-type AddServicesProps = {};
+type AddAReviewProps = {};
 
-const AddServices: React.FC<AddServicesProps> = () => {
-  const [load, setLoad] = useState(false);
-  const [user, loading] = useAuthState(auth);
-
-  if (load || loading) {
-    return <Loading />;
-  }
-
+const AddAReview: React.FC<AddAReviewProps> = () => {
+  const [user] = useAuthState(auth);
   const formHandler = (e: any) => {
     e.preventDefault();
-
-    const title = e.target.title.value;
     const description = e.target.description.value;
     const image = e.target.upload.files[0];
+    const titles = e.target.titles.value;
     const email = e.target.email.value;
-    const price = e.target.price.value;
+    const name = e.target.name.value;
 
     const imgStoreKey = "56281d4753a15bb93e3a006088ea61a1";
     const formData = new FormData();
@@ -38,34 +30,28 @@ const AddServices: React.FC<AddServicesProps> = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        setLoad(true);
-        console.log(result);
         if (result.success) {
-          setLoad(false);
           const img = result.data.url;
-          const fullDetails = {
-            title: title,
+          const newReview = {
             description: description,
             image: img,
+            position: titles,
             email: email,
-            price: price,
+            name: name,
           };
 
           // post method
-          const url =
-            "https://creative-agancy-server.vercel.app/api/v1/services";
+          const url = "http://localhost:5000/api/v1/review";
           fetch(url, {
             method: "POST",
             headers: {
               "content-type": "application/json",
             },
-            body: JSON.stringify(fullDetails),
+            body: JSON.stringify(newReview),
           })
             .then((res) => res.json())
-            .then((payment) => {
-              window.location.reload();
-              e.reset();
-              console.log(payment);
+            .then((review) => {
+              console.log(review);
             });
         }
       });
@@ -73,7 +59,7 @@ const AddServices: React.FC<AddServicesProps> = () => {
   return (
     <DashboardLayout>
       <div>
-        <DashboardTitle>Add a Service</DashboardTitle>
+        <DashboardTitle>Add a Review</DashboardTitle>
         <div className="bg-white p-16 mb-4 rounded-xl">
           <form onSubmit={formHandler}>
             <div className="grid grid-cols-1 gap-4">
@@ -82,12 +68,12 @@ const AddServices: React.FC<AddServicesProps> = () => {
                   htmlFor="name"
                   className="mb-2 block uppercase leading-7 text-sm text-gray-600"
                 >
-                  service title <span className="text-secondary">*</span>
+                  your Name <span className="text-secondary">*</span>
                 </label>
                 <InputComponents
                   type={"text"}
-                  placeholder={"service title"}
-                  name={"title"}
+                  placeholder={"your name"}
+                  name={"name"}
                   className="bg-[#f7f8fa] placeholder-black"
                 />
               </div>
@@ -146,12 +132,12 @@ const AddServices: React.FC<AddServicesProps> = () => {
                   htmlFor="name"
                   className="mb-2 block uppercase leading-7 text-sm text-gray-600"
                 >
-                  price <span className="text-secondary">*</span>
+                  your position <span className="text-secondary">*</span>
                 </label>
                 <InputComponents
-                  type={"number"}
-                  placeholder={"price"}
-                  name={"price"}
+                  type={"text"}
+                  placeholder={"your position"}
+                  name={"titles"}
                   className="bg-[#f7f8fa] placeholder-black"
                 />
               </div>
@@ -166,4 +152,4 @@ const AddServices: React.FC<AddServicesProps> = () => {
     </DashboardLayout>
   );
 };
-export default AddServices;
+export default AddAReview;
