@@ -10,7 +10,6 @@ import { MdAddToPhotos, MdReorder } from "react-icons/md";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import auth from "../../firebase.init";
 import useAdminToken from "../../Hooks/useAdminToken";
-import review from "../../images/dashboard-icon/Add A Review.svg";
 import serviceList from "../../images/dashboard-icon/Service list.svg";
 import order from "../../images/dashboard-icon/shopping-cart-outline 1order.svg";
 import Loading from "../shared/Loading";
@@ -41,15 +40,15 @@ const SideBar: () => JSX.Element = () => {
           <span className="text-[20px]">My Order</span>
         </DashboardActiveLink>
       </li>
-      <li className="w-full block my-[15px] ">
-        <DashboardActiveLink to={"/dashboard/review"}>
-          <img className="w-[30px]" src={review} alt="" />
-          <span className="text-[20px]">Review</span>
-        </DashboardActiveLink>
-      </li>
 
       {admin && (
         <>
+          <li className="w-full block my-[15px] ">
+            <DashboardActiveLink to={"/dashboard/review"}>
+              <img className="w-[30px]" src={review} alt="" />
+              <span className="text-[20px]">Review</span>
+            </DashboardActiveLink>
+          </li>
           <li className="w-full block my-[15px] ">
             <DashboardActiveLink to={"/dashboard/add-a-review"}>
               <MdAddToPhotos className="text-[30px]" />
