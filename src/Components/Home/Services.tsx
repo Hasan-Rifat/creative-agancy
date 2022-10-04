@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import useServices from "../../Hooks/useServices";
 import Layout from "../shared/Layout";
+import Loading from "../shared/Loading";
 
 type ServicesProps = {};
 
@@ -16,6 +17,10 @@ const Services: React.FC<ServicesProps> = () => {
   };
 
   const navigate = useNavigate();
+
+  if (service.length === 0) {
+    return <Loading />;
+  }
 
   const navigateServiceDetails = (id: number) => {
     navigate(`/service/${id}`);
