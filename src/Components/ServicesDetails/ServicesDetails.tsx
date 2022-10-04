@@ -25,26 +25,6 @@ const ServicesDetails = () => {
   }
 
   const navigateCheckout = (e: any) => {
-    //  const singleOrder = {
-    //   title: e.title,
-    //   description: e.description,
-    //   price: e.price,
-    //   image: e.image,
-    //   email: user?.email,
-    //   orderId: e._id,
-    // };
-
-    // fetch("https://creative-agancy-server.vercel.app/api/v1/order", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(singleOrder),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
     navigate(`/checkout/${id}`);
   };
 

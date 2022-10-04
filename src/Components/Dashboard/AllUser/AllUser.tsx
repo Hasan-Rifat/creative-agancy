@@ -20,7 +20,6 @@ const AllUser: React.FC<AllUserProps> = () => {
   }
 
   const makeAdmin = (email: string) => {
-    console.log(email);
     const url = `https://creative-agancy-server.vercel.app/api/v1/admin/${email}`;
 
     fetch(url, {
@@ -33,7 +32,6 @@ const AllUser: React.FC<AllUserProps> = () => {
       });
   };
   const deleteUser = (email: string) => {
-    console.log(email);
     const url = `https://creative-agancy-server.vercel.app/api/v1/admin/${email}`;
 
     fetch(url, {

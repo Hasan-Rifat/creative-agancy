@@ -33,7 +33,6 @@ const Review: React.FC<ReviewProps> = () => {
       .then((res) => res.json())
       .then((deleted) => {
         toast.error("deletedReview successfully");
-        console.log(`${deleted} `);
         refetch();
       });
   };

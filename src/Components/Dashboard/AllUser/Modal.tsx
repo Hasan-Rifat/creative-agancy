@@ -41,7 +41,7 @@ const Modal: React.FC<ModalProps> = ({ setOpen, open, getData }) => {
       .then((res) => res.json())
       .then((result) => {
         setLoad(true);
-        console.log(result);
+       
         if (result.success) {
           setLoad(false);
           const img = result.data.url;

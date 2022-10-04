@@ -31,7 +31,6 @@ const Login: React.FC<LoginProps> = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(typeof e.target.email);
     signInWithEmailAndPassword(email, password);
     toast.success("Login successfully");
   };

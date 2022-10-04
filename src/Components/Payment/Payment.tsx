@@ -22,7 +22,6 @@ const Payment: React.FC<PaymentProps> = () => {
   if (isLoading) {
     return <Loading />;
   }
-  console.log(singleItem);
 
   return (
     <Layout className="py-[150px] px-[20px] bg-[#f5f8ff]">

@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import DashboardLayout from "../../shared/DashboardLayout";
+import Loading from "../../shared/Loading";
 import DashboardTitle from "../DashboardTitle";
 
 type MyOrderProps = {};
@@ -19,11 +20,9 @@ const MyOrder = () => {
     ).then((res) => res.json())
   );
 
-  /*  if (isLoading) {
+  if (isLoading) {
     return <Loading />;
-  } */
-
-  console.log(singleOrder);
+  }
 
   const deletedOrder = (id: any) => {
     const url = `https://creative-agancy-server.vercel.app/api/v1/order/${id}`;

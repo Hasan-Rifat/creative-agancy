@@ -16,9 +16,7 @@ const useToken = (user: any) => {
         body: JSON.stringify(currentUser),
       })
         .then((res) => res.json())
-        .then((data) => {
-          console.log("instert data on mongodb", data);
-        });
+        .then((data) => {});
     }
 
     return setToken(user);
