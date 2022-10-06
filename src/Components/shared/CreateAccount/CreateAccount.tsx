@@ -43,7 +43,6 @@ const CreateAccount: React.FC<CreateAccountProps> = () => {
 
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: userName });
-    toast.success(" user Created successfully");
   };
 
   if (loading || updating) {
@@ -51,19 +50,12 @@ const CreateAccount: React.FC<CreateAccountProps> = () => {
   }
 
   if (token) {
+    toast.success(" user Created successfully");
     navigate(from, { replace: true });
   }
 
-  let errorElement: JSX.Element | string;
-
   if (error || updateError) {
-    errorElement = (
-      <p className="text-center mt-[20px] text-red-500">
-        {error?.message.slice(9)}
-      </p>
-    );
-  } else {
-    errorElement = "";
+    toast.error(error?.message.slice(9));
   }
 
   return (
@@ -109,7 +101,6 @@ const CreateAccount: React.FC<CreateAccountProps> = () => {
                 </Link>
               </p>
             </div>
-            {errorElement}
           </div>
         </div>
       </div>

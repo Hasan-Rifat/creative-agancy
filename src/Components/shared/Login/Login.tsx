@@ -3,12 +3,12 @@ import logo from "../../../images/logos/logo.png";
 
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import Button from "../Button";
 import InputComponents from "../InputComponents";
 import Loading from "../Loading";
 import SocialMedia from "../SocialMedia";
-import { toast } from "react-toastify";
 
 type LoginProps = {};
 
@@ -32,25 +32,18 @@ const Login: React.FC<LoginProps> = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     signInWithEmailAndPassword(email, password);
-    toast.success("Login successfully");
   };
 
   if (loading) {
     return <Loading />;
   }
   if (user) {
+    toast.success("Login successfully");
     navigate(from, { replace: true });
   }
-  let errorElement: JSX.Element | string;
 
   if (error) {
-    errorElement = (
-      <p className="text-center mt-[20px] text-red-500">
-        {error?.message.slice(9)}
-      </p>
-    );
-  } else {
-    errorElement = "";
+    toast.error(error?.message.slice(9));
   }
   return (
     <section>
@@ -96,7 +89,6 @@ const Login: React.FC<LoginProps> = () => {
               </Link>
             </p>
           </div>
-          {errorElement}
         </div>
       </div>
     </section>

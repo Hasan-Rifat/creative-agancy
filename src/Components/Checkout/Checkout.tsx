@@ -8,6 +8,7 @@ import Button from "../shared/Button";
 import InputComponents from "../shared/InputComponents";
 import Layout from "../shared/Layout";
 import Loading from "../shared/Loading";
+import TextArea from "../shared/TextArea";
 type CheckoutProps = {};
 
 const Checkout: React.FC<CheckoutProps> = () => {
@@ -35,57 +36,35 @@ const Checkout: React.FC<CheckoutProps> = () => {
     const stateCountry = e.target.stateCounty.value;
     const postCode = e.target.postcodeZip.value;
     const phoneNumber = e.target.phoneNumber.value;
-    const image = e.target.upload.files[0];
     const projectDetails = e.target.projectDetails.value;
 
-    const imgStoreKey = "56281d4753a15bb93e3a006088ea61a1";
-    const formData = new FormData();
-    formData.append("image", image);
+    const fullDetails = {
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      country: country,
+      townCity: townCity,
+      stateCountry: stateCountry,
+      postcode: postCode,
+      phoneNumber: phoneNumber,
+      projectDetails: projectDetails,
+    };
 
-    const url = `https://api.imgbb.com/1/upload?key=${imgStoreKey}`;
+    // post method
+    const url = "https://creative-agancy-server.vercel.app/api/v1/checkout";
     fetch(url, {
       method: "POST",
-      body: formData,
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(fullDetails),
     })
       .then((res) => res.json())
-      .then((result) => {
-        setLoad(true);
-        if (result.success) {
-          setLoad(false);
-          const img = result.data.url;
-          const fullDetails = {
-            email: email,
-            firstName: firstName,
-            lastName: lastName,
-            country: country,
-            townCity: townCity,
-            stateCountry: stateCountry,
-            postcode: postCode,
-            phoneNumber: phoneNumber,
-            images: img,
-            projectDetails: projectDetails,
-          };
-
-          // post method
-          const url =
-            "https://creative-agancy-server.vercel.app/api/v1/checkout";
-          fetch(url, {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(fullDetails),
-          })
-            .then((res) => res.json())
-            .then((payment) => {
-              e.reset();
-            });
-          toast.success("successfully submit");
-          navigate(`/payment/${singleItem._id}`);
-
-          // setLoad(false);
-        }
+      .then((payment) => {
+        e.reset();
       });
+    toast.success("successfully submit");
+    navigate(`/payment/${singleItem._id}`);
   };
   return (
     <Layout className="py-[150px] mx-[10px] bg-[#f5f8ff]">
@@ -222,22 +201,7 @@ const Checkout: React.FC<CheckoutProps> = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-10">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="mb-2 block uppercase leading-7 text-sm text-gray-600"
-                  >
-                    Upload your website document{" "}
-                    <span className="text-secondary">*</span>
-                  </label>
-                  <InputComponents
-                    type={"file"}
-                    placeholder={"upload"}
-                    name={"upload"}
-                    className="bg-[#f7f8fa] placeholder-black"
-                  />
-                </div>
+              <div className="grid grid-cols-1 gap-10">
                 <div>
                   <label
                     htmlFor="name"
@@ -245,7 +209,7 @@ const Checkout: React.FC<CheckoutProps> = () => {
                   >
                     Details <span className="text-secondary">*</span>
                   </label>
-                  <InputComponents
+                  <TextArea
                     type={"text"}
                     placeholder={"Project details"}
                     name={"projectDetails"}

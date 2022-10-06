@@ -4,9 +4,11 @@ import Checkout from "../Components/Checkout/Checkout";
 import ContactUs from "../Components/Contact/Contact";
 import AllUser from "../Components/Dashboard/AllUser/AllUser";
 import Dashboards from "../Components/Dashboard/Dashboards";
-import Index from "../Components/Dashboard/Index/Index";
 import MyOrder from "../Components/Dashboard/MyOrder/MyOrder";
-import Order from "../Components/Dashboard/Order/AllOrder";
+import {
+  default as AllOrder,
+  default as Order,
+} from "../Components/Dashboard/Order/AllOrder";
 import AddAReview from "../Components/Dashboard/Review/AddAReview";
 import Review from "../Components/Dashboard/Review/Review";
 import AddServices from "../Components/Dashboard/ServiceList/AddServices";
@@ -73,7 +75,7 @@ const AllRoute: React.FC<RouteProps> = () => {
             </RequireAuthProps>
           }
         >
-          <Route index element={<Index />} />
+          <Route index element={<AllOrder />} />
           <Route
             path="order"
             element={
