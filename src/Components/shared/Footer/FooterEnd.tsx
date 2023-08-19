@@ -103,7 +103,7 @@ const FooterEnd: React.FC<footerEndProps> = () => {
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    Hasan Rifat
+                    Creative agancy
                   </a>
                   <span> {new Date().getFullYear()}</span>
                 </p>
