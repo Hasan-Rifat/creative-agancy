@@ -24,7 +24,7 @@ const DashboardActiveLink: React.FC<DashboardActiveLinkProps> = ({
     <Link
       className={`${
         match ? "bg-gradient-to-r from-[#FF0839]   border-[#D6002A] " : ""
-      } w-full  px-[40px]  py-[17px] border-l-[8px]  border-transparent flex items-center gap-2`}
+      } w-full p-5  lg:px-[40px]  lg:py-[17px] border-l-[8px]  border-transparent flex items-center gap-2`}
       to={to}
       {...props}
     >

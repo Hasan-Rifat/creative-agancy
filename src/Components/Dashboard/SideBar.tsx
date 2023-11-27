@@ -34,20 +34,20 @@ const SideBar: () => JSX.Element = () => {
       <li className="w-full block my-[15px] ">
         <DashboardActiveLink to={"/dashboard"}>
           <AiFillDashboard className="text-[30px]" />
-          <span className="text-[20px]">Dashboard</span>
+          <span className="text-[20px] hidden lg:block">Dashboard</span>
         </DashboardActiveLink>
       </li>
 
       <li className="w-full block my-[15px] ">
         <DashboardActiveLink to={"/dashboard/my-order"}>
           <MdReorder className="text-[30px]" />
-          <span className="text-[20px]">My Order</span>
+          <span className="text-[20px] hidden lg:block">My Order</span>
         </DashboardActiveLink>
       </li>
       <li className="w-full block my-[15px] ">
         <DashboardActiveLink to={"/dashboard/add-a-review"}>
           <MdAddToPhotos className="text-[30px]" />
-          <span className="text-[20px]">Add A Review</span>
+          <span className="text-[20px] hidden lg:block">Add A Review</span>
         </DashboardActiveLink>
       </li>
 
@@ -56,32 +56,32 @@ const SideBar: () => JSX.Element = () => {
           <li className="w-full block my-[15px] ">
             <DashboardActiveLink to={"/dashboard/review"}>
               <VscCommentDiscussion className="text-[30px]" />
-              <span className="text-[20px]">Review</span>
+              <span className="text-[20px] hidden lg:block">Review</span>
             </DashboardActiveLink>
           </li>
 
           <li className="w-full block my-[15px] ">
             <DashboardActiveLink to={"/dashboard/services-list"}>
               <img className="w-[30px]" src={serviceList} alt="" />
-              <span className="text-[20px]">Service List</span>
+              <span className="text-[20px] hidden lg:block">Service List</span>
             </DashboardActiveLink>
           </li>
           <li className="w-full block my-[15px] relative">
             <DashboardActiveLink to={"/dashboard/add-services"}>
               <MdAddToPhotos className="text-[30px]" />
-              <span className="text-[20px]">Add Service</span>
+              <span className="text-[20px] hidden lg:block">Add Service</span>
             </DashboardActiveLink>
           </li>
           <li className="w-full block my-[15px] ">
             <DashboardActiveLink to={"/dashboard/order"}>
               <img className="w-[30px]" src={order} alt="order-icon" />
-              <span className="text-[20px]">All Order</span>
+              <span className="text-[20px] hidden lg:block">All Order</span>
             </DashboardActiveLink>
           </li>
           <li className="w-full block my-[15px] relative">
             <DashboardActiveLink to={"/dashboard/all-user"}>
               <FaUserFriends className="text-[30px]" />
-              <span className="text-[20px]">All User</span>
+              <span className="text-[20px] hidden lg:block">All User</span>
             </DashboardActiveLink>
           </li>
         </>
@@ -89,21 +89,21 @@ const SideBar: () => JSX.Element = () => {
 
       <li className="w-full block my-[15px] " onClick={logout}>
         <button
-          className=" bg-gradient-to-r from-[#FF0839]   border-[#D6002A]   w-full  px-[40px]  py-[17px] border-l-[8px]  border-transparent flex items-center gap-2
+          className=" bg-gradient-to-r from-[#FF0839]   border-[#D6002A]   w-full  p-5  lg:px-[40px]  lg:py-[17px] border-l-[8px]  border-transparent flex items-center gap-2
 
 "
         >
           <RiLogoutBoxLine className="text-[30px]" />
-          <span className="text-[20px]">Log Out</span>
+          <span className="text-[20px] hidden lg:block">Log Out</span>
         </button>
       </li>
     </>
   );
   return (
     <div className="py-[54px]">
-      <div className="bg-white w-[140px]  ml-[40px] mb-[20px] p-[10px]">
+      <div className="hidden lg:block bg-white w-[140px]  ml-[40px] mb-[20px] p-[10px]">
         <Link to={`/`}>
-          <img src={logo} alt="" />
+          <img className="" src={logo} alt="" />
         </Link>
       </div>
       <ul className="text-white ">{SideBarMenu}</ul>

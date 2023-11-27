@@ -9,11 +9,11 @@ const Dashboards: React.FC<DashboardProps> = () => {
     <section>
       <div className="">
         <div>
-          <div className="grid grid-cols-6 h-screen">
-            <div className="col-span-1 bg-[#263238] h-full ">
+          <div className="flex gap-5 ">
+            <div className="w-1/5 bg-[#263238] h-full ">
               <SideBar />
             </div>
-            <div className="col-span-5 bg-[#f7f8fa] h-full">
+            <div className="w-4/5 bg-[#f7f8fa] h-full">
               <Outlet />
             </div>
           </div>

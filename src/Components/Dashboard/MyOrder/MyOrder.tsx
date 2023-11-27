@@ -42,84 +42,57 @@ const MyOrder = () => {
     <DashboardLayout>
       <div>
         <DashboardTitle>My Order</DashboardTitle>
-        <div>
-          {" "}
-          <div className="bg-white shadow-[0px_4px_80px_rgba(0,0,0,0.1)] p-8 rounded-[10px]">
-            <div className="">
-              <div>
-                {/* head */}
-                <div className="grid grid-cols-7 gap-4 text-center items-center bg-primary p-2 rounded-[40px] text-white uppercase">
-                  <div>title</div>
-                  <div>image</div>
-                  <div>price</div>
-                  <div>description</div>
-                  <div>Order Id</div>
-                  <div>payment</div>
-                  <div>cancel order</div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div>
-                {singleOrder &&
-                  singleOrder.map(
-                    ({ title, description, price, image, paid, _id }: any) => (
-                      <div key={_id} className="py-[20px]">
-                        {/* body  */}
-                        <div className="grid grid-cols-7 gap-4 items-center text-center">
-                          <div>
-                            <p>
-                              <span>{title}</span>
-                            </p>
-                          </div>
-                          <div>
-                            <img
-                              className="w-[50px] h-[50px] mx-auto"
-                              src={image}
-                              alt=""
-                            />
-                          </div>
-                          <div>
-                            <p className="font-semibold">
-                              <span className="text-secondary">$</span>
-                              {}
-                              <span>{price}</span>
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-[14px] text-justify">
-                              {description.slice(0, 99)}
-                            </p>
-                          </div>
-                          <div>
-                            <p>
-                              <span>{_id.slice(17)}</span>
-                            </p>
-                          </div>
-
-                          {paid && (
-                            <div>
-                              <h2 className="text-green-500 font-semibold">
-                                paid
-                              </h2>
-                            </div>
-                          )}
-
-                          <>
-                            <button
-                              className="font-bold text-[20px]"
-                              onClick={() => deletedOrder(_id)}
-                            >
-                              x
-                            </button>
-                          </>
-                        </div>
-                      </div>
-                    )
-                  )}
-              </div>
-            </div>
-          </div>
+        <div className="relative overflow-x-auto">
+          <table className="table table-bordered table-hover w-full">
+            <thead>
+              <tr className="bg-primary ">
+                <th className="p-5">Title</th>
+                <th className="p-5">Image</th>
+                <th className="p-5">Price</th>
+                <th className="p-5">Description</th>
+                <th className="p-5">Order Id</th>
+                <th className="p-5">Payment</th>
+                <th className="p-5">Cancel Order</th>
+              </tr>
+            </thead>
+            <tbody>
+              {singleOrder &&
+                singleOrder.map(
+                  ({ title, description, price, image, paid, _id }: any) => (
+                    <tr key={_id}>
+                      <td className="p-5">{title}</td>
+                      <td className="p-5">
+                        <img
+                          className="w-[50px] h-[50px] mx-auto"
+                          src={image}
+                          alt=""
+                        />
+                      </td>
+                      <td className="p-5">${price}</td>
+                      <td className="p-5 text-justify">
+                        {description.slice(0, 30)}
+                      </td>
+                      <td className="p-5">{_id.slice(17)}</td>
+                      <td className="p-5">
+                        {paid ? (
+                          <span className="text-green-500 font-semibold">
+                            Paid
+                          </span>
+                        ) : null}
+                      </td>
+                      <td className="p-5">
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => deletedOrder(_id)}
+                        >
+                          Cancel
+                        </button>
+                      </td>
+                    </tr>
+                  )
+                )}
+            </tbody>
+          </table>
         </div>
       </div>
     </DashboardLayout>
